@@ -4,84 +4,113 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio — Nepal Technology Service</title>
-  <meta name="description" content="Projects built by Nepal Technology Service — real products shipped to international standards." />
+  <meta name="description" content="Projects built by Nepal Technology Service to production standards — real deliverables, real infrastructure, real results." />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .portfolio-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 56px;
+    /* FEATURED CASE STUDY */
+    .case-study {
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; margin-top: 56px;
     }
-    .portfolio-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-      position: relative;
+    .case-study-header {
+      padding: 48px 48px 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
     }
-    .portfolio-card:hover { border-color: rgba(220,20,60,0.4); transform: translateY(-4px); }
-    .portfolio-card.featured {
-      grid-column: span 2;
+    .case-study-meta {
+      display: flex; align-items: center; gap: 12px;
+      flex-wrap: wrap; margin-bottom: 20px;
     }
-    .portfolio-card-visual {
-      aspect-ratio: 16/7;
-      background: var(--surface2);
-      position: relative; overflow: hidden;
+    .case-tag {
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
+    }
+    .case-tag.red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(220,20,60,0.2); }
+    .case-tag.blue { background: var(--blue-dim); color: #7AA3FF; border: 1px solid rgba(0,56,147,0.25); }
+    .case-tag.gray { background: rgba(255,255,255,0.04); color: var(--light); border: 1px solid var(--border); }
+    .case-year { font-size: 0.72rem; color: var(--muted); margin-left: auto; }
+    .case-study-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 0.95; letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .case-study-header .case-tagline {
+      font-size: 1rem; color: var(--light); max-width: 560px;
+      line-height: 1.75; padding-bottom: 36px;
+    }
+
+    .case-visual {
+      height: 280px; background: var(--surface2);
       display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
-    .portfolio-card.featured .portfolio-card-visual { aspect-ratio: 16/6; }
-    .portfolio-visual-bg {
+    .case-visual-bg {
       position: absolute; inset: 0;
+      background: linear-gradient(135deg,
+        rgba(220,20,60,0.06) 0%,
+        rgba(0,56,147,0.1) 100%
+      );
     }
-    .portfolio-visual-label {
-      position: relative; z-index: 1;
-      font-family: var(--font-head); font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 800; letter-spacing: -0.05em;
-      color: rgba(255,255,255,0.06);
+    .case-visual-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 12vw, 10rem);
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.04);
+      position: relative; z-index: 1; line-height: 1;
     }
-    .portfolio-card-body { padding: 32px; }
-    .portfolio-card-meta {
-      display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+
+    .case-body {
+      display: grid; grid-template-columns: 1fr 320px;
+      gap: 0; background: var(--black);
     }
-    .portfolio-tag {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 4px 10px; border-radius: 4px;
+    .case-content { padding: 44px 48px; border-right: 1px solid var(--border); }
+    .case-content h3 {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 14px; margin-top: 32px;
     }
-    .portfolio-tag.red { background: var(--red-muted); color: var(--red); }
-    .portfolio-tag.blue { background: var(--blue-muted); color: #6699ff; }
-    .portfolio-tag.gray { background: var(--surface2); color: var(--muted); }
-    .portfolio-year { font-size: 0.78rem; color: var(--muted); margin-left: auto; }
-    .portfolio-card-body h3 {
-      font-family: var(--font-head); font-size: 1.4rem; font-weight: 800;
-      margin-bottom: 10px; letter-spacing: -0.02em;
+    .case-content h3:first-child { margin-top: 0; }
+    .case-content p { font-size: 0.9rem; color: var(--light); line-height: 1.85; }
+    .case-content p + p { margin-top: 12px; }
+    .case-content p strong { color: var(--white); font-weight: 500; }
+
+    .case-sidebar { padding: 44px 36px; }
+    .case-sidebar-block { margin-bottom: 32px; }
+    .case-sidebar-block:last-child { margin-bottom: 0; }
+    .case-sidebar-block h4 {
+      font-size: 0.64rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border2);
     }
-    .portfolio-card.featured .portfolio-card-body h3 { font-size: 2rem; }
-    .portfolio-card-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; max-width: 600px; }
-    .portfolio-card-foot {
-      padding: 20px 32px; border-top: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    .case-sidebar-block p { font-size: 0.82rem; color: var(--light); line-height: 1.75; }
+    .tech-list { display: flex; flex-direction: column; gap: 8px; }
+    .tech-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.8rem; padding: 8px 0;
+      border-bottom: 1px solid var(--border2);
     }
-    .portfolio-stack { display: flex; gap: 8px; flex-wrap: wrap; }
-    .portfolio-stack span {
-      font-size: 0.75rem; color: var(--light);
-      background: var(--surface2); border: 1px solid var(--border);
-      padding: 4px 10px; border-radius: 4px;
-    }
-    .portfolio-link {
-      font-size: 0.82rem; font-weight: 700; color: var(--red);
-      display: flex; align-items: center; gap: 6px;
-      transition: gap 0.2s;
-    }
-    .portfolio-link:hover { gap: 10px; }
+    .tech-row:last-child { border-bottom: none; }
+    .tech-name { color: var(--white); }
+    .tech-cat { font-size: 0.68rem; color: var(--muted); }
 
     /* MORE COMING */
-    .more-section {
-      background: var(--surface); text-align: center; padding: 80px 5vw;
+    .coming-section {
+      background: var(--surface);
       border-top: 1px solid var(--border);
+      padding: 80px 5vw; text-align: center;
     }
-    .more-section h3 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
-    .more-section p { color: var(--muted); max-width: 400px; margin: 0 auto 28px; }
+    .coming-section h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem); letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+    .coming-section p { font-size: 0.9rem; color: var(--muted); max-width: 400px; margin: 0 auto 28px; }
 
-    @media (max-width: 768px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .portfolio-card.featured { grid-column: span 1; }
+    @media (max-width: 960px) {
+      .case-study-header { padding: 32px 24px 0; }
+      .case-body { grid-template-columns: 1fr; }
+      .case-content { padding: 32px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+      .case-sidebar { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -90,96 +119,90 @@
 
 <div class="page-hero">
   <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Portfolio</div>
-  <h1>Real Products.<br>Real <span style="color:var(--red)">Standards.</span></h1>
-  <p>Not mockups. Not concepts. Actual products we've built, shipped, and deployed — to international production standards.</p>
+  <h1>REAL PRODUCTS.<br>REAL <span style="color:var(--red)">STANDARDS.</span></h1>
+  <p>Not mockups. Not concepts for clients who never launched. Products we built, deployed to production, and handed over with proper documentation. This is what NTS work actually looks like.</p>
 </div>
 
+<!-- MIGREASE CASE STUDY -->
 <section class="section">
-  <div class="section-tag">Our Work</div>
-  <h2 class="section-title">What We've Built</h2>
+  <span class="label">Featured Project</span>
+  <h2 class="h2">CASE STUDY:<br>MIGREASE.</h2>
 
-  <div class="portfolio-grid">
-    <!-- MIGREASE - Featured -->
-    <div class="portfolio-card featured fade-up">
-      <div class="portfolio-card-visual">
-        <div class="portfolio-visual-bg" style="background: linear-gradient(135deg, rgba(220,20,60,0.08) 0%, rgba(0,56,147,0.12) 100%);"></div>
-        <div class="portfolio-visual-label">MIGREASE</div>
+  <div class="case-study" data-reveal>
+    <div class="case-study-header">
+      <div class="case-study-meta">
+        <span class="case-tag red">Full-Stack Platform</span>
+        <span class="case-tag blue">AWS Production</span>
+        <span class="case-tag blue">Terraform IaC</span>
+        <span class="case-tag gray">Next.js</span>
+        <span class="case-tag gray">Node.js</span>
+        <span class="case-year">2025</span>
       </div>
-      <div class="portfolio-card-body">
-        <div class="portfolio-card-meta">
-          <span class="portfolio-tag red">Full-Stack Platform</span>
-          <span class="portfolio-tag blue">AWS</span>
-          <span class="portfolio-tag gray">Production</span>
-          <span class="portfolio-year">2025</span>
-        </div>
-        <h3>Migrease</h3>
-        <p>A full-stack web platform built and deployed to production on AWS infrastructure. Migrease was built from the ground up with proper cloud architecture — serverless Lambda functions, S3, CloudFront, and a complete CI/CD pipeline with GitHub Actions. The frontend runs on Next.js, the backend on Node.js with TypeScript. Everything from the Terraform infrastructure to the API design follows international deployment standards.</p>
-      </div>
-      <div class="portfolio-card-foot">
-        <div class="portfolio-stack">
-          <span>Next.js</span>
-          <span>Node.js</span>
-          <span>TypeScript</span>
-          <span>AWS Lambda</span>
-          <span>Terraform</span>
-          <span>GitHub Actions</span>
-          <span>PostgreSQL</span>
-        </div>
-        <span class="portfolio-link">View Project →</span>
-      </div>
+      <h2>MIGREASE</h2>
+      <p class="case-tagline">A full-stack web platform built and deployed to AWS production with complete infrastructure-as-code, automated CI/CD pipelines, and TypeScript end-to-end.</p>
     </div>
 
-    <!-- PLACEHOLDER CARD 1 -->
-    <div class="portfolio-card fade-up" data-delay="0.08s">
-      <div class="portfolio-card-visual">
-        <div class="portfolio-visual-bg" style="background: linear-gradient(135deg, rgba(0,56,147,0.1) 0%, rgba(0,0,0,0) 100%);"></div>
-        <div class="portfolio-visual-label" style="font-size:3rem;">MORE</div>
-      </div>
-      <div class="portfolio-card-body">
-        <div class="portfolio-card-meta">
-          <span class="portfolio-tag blue">Coming Soon</span>
-          <span class="portfolio-year">2025</span>
-        </div>
-        <h3>Next Project</h3>
-        <p>We're currently working on new projects that will be added here soon. Every project we take on is built to the same standard as Migrease — no exceptions.</p>
-      </div>
-      <div class="portfolio-card-foot">
-        <div class="portfolio-stack">
-          <span>To be revealed</span>
-        </div>
-      </div>
+    <div class="case-visual">
+      <div class="case-visual-bg"></div>
+      <div class="case-visual-name">MIGREASE</div>
     </div>
 
-    <!-- PLACEHOLDER CARD 2 -->
-    <div class="portfolio-card fade-up" data-delay="0.16s">
-      <div class="portfolio-card-visual">
-        <div class="portfolio-visual-bg" style="background: linear-gradient(135deg, rgba(220,20,60,0.06) 0%, rgba(0,0,0,0) 100%);"></div>
-        <div class="portfolio-visual-label" style="font-size:3rem;">SOON</div>
+    <div class="case-body">
+      <div class="case-content">
+        <h3>The Project</h3>
+        <p>Migrease is a web platform built entirely in-house by NTS. It was the first major production deployment NTS undertook — and it was used to prove the approach: build the right way from day one, regardless of the pressure to move fast and cut corners.</p>
+
+        <h3>Architecture</h3>
+        <p>The infrastructure is managed entirely in <strong>Terraform</strong> — no manual console configuration, no infrastructure that lives only in someone's head. Every resource (Lambda functions, S3 buckets, CloudFront distributions, API Gateway, RDS) is versioned, documented, and reproducible from code.</p>
+        <p>The backend runs on <strong>AWS Lambda</strong> with a Node.js/TypeScript runtime — serverless where it makes sense, with proper cold-start mitigation and function isolation. The frontend is a <strong>Next.js</strong> application served via CloudFront with edge caching, delivering sub-second load times.</p>
+
+        <h3>CI/CD & Deployment</h3>
+        <p>Every code change goes through a <strong>GitHub Actions</strong> pipeline: automated tests run first, build artifacts are created and validated, and deployments happen only on passing pipelines. Staging and production environments are separate, with environment-parity maintained through Terraform workspaces.</p>
+        <p>Deployment to Lambda is automated — no FTP, no manual zipping, no SSH into a server. The entire process from merged PR to production takes under 3 minutes.</p>
+
+        <h3>Security</h3>
+        <p>IAM roles are scoped to least-privilege. No broad permissions, no shared credentials. Secrets are managed through AWS Secrets Manager — not environment variable files committed to the repo. The API includes rate limiting, input validation, and proper error responses that don't leak internal information.</p>
+
+        <h3>Documentation</h3>
+        <p>Full API documentation was written in OpenAPI format. Infrastructure decisions are documented in ADRs (Architecture Decision Records). The README covers local setup, environment configuration, deployment process, and common debugging scenarios. Any developer should be able to pick this up without asking us how it works.</p>
       </div>
-      <div class="portfolio-card-body">
-        <div class="portfolio-card-meta">
-          <span class="portfolio-tag gray">In Progress</span>
-          <span class="portfolio-year">2025</span>
+
+      <div class="case-sidebar">
+        <div class="case-sidebar-block">
+          <h4>Technology Stack</h4>
+          <div class="tech-list">
+            <div class="tech-row"><span class="tech-name">Next.js</span><span class="tech-cat">Frontend</span></div>
+            <div class="tech-row"><span class="tech-name">Node.js / TypeScript</span><span class="tech-cat">Backend</span></div>
+            <div class="tech-row"><span class="tech-name">AWS Lambda</span><span class="tech-cat">Compute</span></div>
+            <div class="tech-row"><span class="tech-name">S3 + CloudFront</span><span class="tech-cat">Storage / CDN</span></div>
+            <div class="tech-row"><span class="tech-name">API Gateway</span><span class="tech-cat">API Layer</span></div>
+            <div class="tech-row"><span class="tech-name">RDS PostgreSQL</span><span class="tech-cat">Database</span></div>
+            <div class="tech-row"><span class="tech-name">Terraform</span><span class="tech-cat">IaC</span></div>
+            <div class="tech-row"><span class="tech-name">GitHub Actions</span><span class="tech-cat">CI/CD</span></div>
+            <div class="tech-row"><span class="tech-name">AWS Secrets Manager</span><span class="tech-cat">Secrets</span></div>
+          </div>
         </div>
-        <h3>Another One.</h3>
-        <p>NTS is young — 2025 is just the beginning. Watch this space. We ship fast and we ship properly.</p>
-      </div>
-      <div class="portfolio-card-foot">
-        <div class="portfolio-stack">
-          <span>Stay tuned</span>
+        <div class="case-sidebar-block">
+          <h4>Delivery Standard</h4>
+          <p>Infrastructure as code. Automated deployments. Test coverage. OpenAPI documentation. ADRs. Least-privilege IAM. This is what every NTS project is held to.</p>
+        </div>
+        <div class="case-sidebar-block">
+          <h4>Status</h4>
+          <p>Deployed to AWS production. Running. Documented. Fully handed over.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="more-section">
-  <h3>Have a Project in Mind?</h3>
-  <p>We're always open to interesting problems. If you've got something to build, let's talk.</p>
-  <a href="contact.html" class="btn btn-primary">Start a Conversation →</a>
+<!-- MORE COMING -->
+<div class="coming-section">
+  <h3>MORE PROJECTS IN PROGRESS.</h3>
+  <p>We're a two-year-old company. The portfolio is growing. Every project we take on is added here when it ships.</p>
+  <a href="contact.html" style="display:inline-flex;align-items:center;gap:12px;font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:0.16em;color:var(--white);border-bottom:1px solid var(--red);padding-bottom:2px;">Start a project with us →</a>
 </div>
 
 <div id="footer-ph"></div>
-<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

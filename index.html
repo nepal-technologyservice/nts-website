@@ -3,645 +3,541 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nepal Technology Service</title>
-  <meta name="description" content="Nepal Technology Service — web, apps, security and everything in between. Built in Lalitpur. Built different." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <title>Nepal Technology Service — Built Different</title>
+  <meta name="description" content="Nepal Technology Service is a full-stack IT company from Imadol, Lalitpur — bridging Nepal to international standards in web, app, security, and software development." />
+  <meta property="og:title" content="Nepal Technology Service" />
+  <meta property="og:description" content="Full-stack IT from Nepal. Web, apps, security, cloud, DevOps." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="css/style.css" />
   <style>
-    :root {
-      --red:   #DC143C;
-      --blue:  #003893;
-      --black: #080A10;
-      --off:   #0E1018;
-      --dim:   #1A1C24;
-      --muted: #555B6E;
-      --light: #9BA3B8;
-      --white: #EDF0F7;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 0 5vw;
-      height: 68px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(8,10,16,0.9);
-      backdrop-filter: blur(12px);
-    }
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem; letter-spacing: 0.12em;
-      display: flex; gap: 1px;
-    }
-    .logo span:nth-child(1) { color: var(--white); }
-    .logo span:nth-child(2) { color: var(--red); }
-    .logo span:nth-child(3) { color: #3A6FD8; }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 2.2rem;
-    }
-    .nav-links a {
-      font-size: 0.82rem; font-weight: 400; letter-spacing: 0.04em;
-      color: var(--light); transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a.active { color: var(--white); }
-    .nav-contact {
-      font-size: 0.82rem; font-weight: 500;
-      border: 1px solid rgba(220,20,60,0.5);
-      color: var(--red) !important;
-      padding: 8px 18px; border-radius: 3px;
-      transition: all 0.2s !important;
-    }
-    .nav-contact:hover {
-      background: var(--red) !important;
-      color: #fff !important;
-      border-color: var(--red) !important;
-    }
-
-    /* ── HERO ── */
+    /* ── HERO ─────────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      padding: 68px 5vw 0;
+      padding-top: var(--nav-h);
       display: grid;
       grid-template-rows: 1fr auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute; left: 5vw; top: 68px; bottom: 0;
-      width: 1px; background: rgba(255,255,255,0.04);
-    }
-
-    .hero-main {
-      display: flex; flex-direction: column;
-      justify-content: center;
-      padding: 60px 0 40px 64px;
-      position: relative;
-    }
-
-    .hero-year {
-      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 28px;
-    }
-
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(5rem, 13vw, 13rem);
-      line-height: 0.9;
-      letter-spacing: 0.02em;
-      position: relative;
-    }
-    .hero-title .line-1 { display: block; color: var(--white); }
-    .hero-title .line-2 {
-      display: block; color: transparent;
-      -webkit-text-stroke: 1.5px rgba(220,20,60,0.6);
-    }
-    .hero-title .line-3 { display: block; color: var(--red); }
-
-    .hero-right {
-      position: absolute; right: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 300px;
-      border-left: 1px solid rgba(255,255,255,0.05);
-      padding: 40px;
-    }
-    .hero-right p {
-      font-size: 0.88rem; color: var(--light); line-height: 1.85;
-      margin-bottom: 12px;
-    }
-    .hero-right p strong { color: var(--white); font-weight: 500; }
-    .hero-cta {
-      display: inline-block;
-      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--white);
-      border-bottom: 1px solid var(--red); padding-bottom: 3px;
-      margin-top: 24px;
-      transition: letter-spacing 0.3s;
-    }
-    .hero-cta:hover { letter-spacing: 0.14em; }
-
-    .hero-bottom {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 20px 64px;
-      font-size: 0.72rem; color: var(--muted); letter-spacing: 0.06em;
-    }
-    .hero-bottom-services { display: flex; gap: 20px; }
-
-    /* ── UTILITIES ── */
-    .section { padding: 100px 5vw; }
-    .tag {
-      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--red); display: block; margin-bottom: 16px;
-    }
-    .h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.8rem, 5vw, 5rem);
-      line-height: 0.95; letter-spacing: 0.04em;
-      margin-bottom: 24px;
-    }
-
-    /* ── SERVICES ── */
-    .services-wrap {
-      display: grid; grid-template-columns: 320px 1fr;
-      border: 1px solid rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;
-      margin-top: 64px;
-    }
-    .services-left {
-      padding: 48px 36px;
-      border-right: 1px solid rgba(255,255,255,0.06);
-      background: var(--off);
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .services-left p { font-size: 0.88rem; color: var(--muted); line-height: 1.85; margin-top: 14px; }
-    .services-all-link {
-      font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--light); border-bottom: 1px solid rgba(255,255,255,0.1);
-      padding-bottom: 3px; display: inline-block; margin-top: 28px;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .services-all-link:hover { color: var(--red); border-color: var(--red); }
-    .services-right {
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
-    .svc {
-      padding: 32px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-      border-right: 1px solid rgba(255,255,255,0.04);
-      transition: background 0.25s;
-    }
-    .svc:hover { background: rgba(220,20,60,0.04); }
-    .svc:nth-child(even) { border-right: none; }
-    .svc-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 0.85rem; letter-spacing: 0.2em; color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .svc h3 { font-size: 0.92rem; font-weight: 500; margin-bottom: 5px; }
-    .svc p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
-
-    /* ── MISSION ── */
-    .mission-strip {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: var(--off);
-      padding: 80px 5vw;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .mission-quote {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.4rem, 4vw, 4rem);
-      line-height: 1.05; letter-spacing: 0.04em;
-    }
-    .mission-quote em { font-style: normal; color: var(--red); }
-    .mission-body p { font-size: 0.92rem; color: var(--light); line-height: 1.9; }
-    .mission-body p + p { margin-top: 14px; }
-    .mission-founder {
-      display: flex; align-items: center; gap: 14px;
-      margin-top: 28px; padding-top: 28px;
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
-    .mission-founder img {
-      width: 42px; height: 42px; border-radius: 50%;
-      object-fit: cover; object-position: top;
-      border: 1px solid rgba(220,20,60,0.3);
-    }
-    .mission-founder-name { font-size: 0.85rem; font-weight: 500; }
-    .mission-founder-role { font-size: 0.72rem; color: var(--muted); }
-
-    /* ── NUMBERS ── */
-    .numbers {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .num-block {
-      padding: 56px 5vw;
-      border-right: 1px solid rgba(255,255,255,0.05);
-    }
-    .num-block:last-child { border-right: none; }
-    .num-val {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem,5vw,5.5rem);
-      line-height: 1; letter-spacing: 0.04em;
-    }
-    .num-val sup { font-size: 0.4em; color: var(--red); vertical-align: super; }
-    .num-label { font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
-
-    /* ── COURSES ── */
-    .courses-section { background: var(--off); }
-    .courses-header {
-      display: flex; justify-content: space-between; align-items: flex-end;
-      margin-bottom: 40px; flex-wrap: wrap; gap: 20px;
-    }
-    .courses-grid {
-      display: grid; grid-template-columns: repeat(2,1fr);
-      border: 1px solid rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;
-    }
-    .course-item {
-      padding: 32px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      border-right: 1px solid rgba(255,255,255,0.05);
-      transition: background 0.25s;
-    }
-    .course-item:nth-child(even) { border-right: none; }
-    .course-item:hover { background: var(--dim); }
-    .course-item-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 12px; margin-bottom: 12px;
-    }
-    .course-item h3 { font-size: 0.95rem; font-weight: 500; line-height: 1.35; }
-    .course-cs {
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em;
-      text-transform: uppercase; background: rgba(0,56,147,0.15);
-      color: #6699ff; border: 1px solid rgba(0,56,147,0.25);
-      padding: 4px 9px; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
-    }
-    .course-item p { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
-
-    /* ── BLOG ── */
-    .blog-list { margin-top: 48px; }
-    .blog-post {
-      display: grid; grid-template-columns: 72px 1fr auto;
-      gap: 28px; align-items: start;
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      transition: opacity 0.2s;
-    }
-    .blog-post:first-child { border-top: 1px solid rgba(255,255,255,0.05); }
-    .blog-post:hover .blog-title { color: var(--red); }
-    .blog-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem; color: rgba(255,255,255,0.07);
-      letter-spacing: 0.08em; padding-top: 2px;
-    }
-    .blog-cat {
-      font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 5px;
-    }
-    .blog-title {
-      font-size: 0.95rem; font-weight: 400; line-height: 1.4;
-      color: var(--white); margin-bottom: 5px; transition: color 0.2s;
-    }
-    .blog-excerpt { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
-    .blog-date { font-size: 0.72rem; color: var(--muted); white-space: nowrap; padding-top: 3px; }
-
-    /* ── CTA ── */
-    .cta-block {
-      padding: 120px 5vw;
-      border-top: 1px solid rgba(255,255,255,0.05);
       position: relative; overflow: hidden;
     }
-    .cta-block::after {
-      content: 'NTS';
-      position: absolute; right: 2vw; bottom: -2rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22vw; color: rgba(255,255,255,0.012);
-      line-height: 1; letter-spacing: 0.1em; pointer-events: none;
+    .hero-line {
+      position: absolute; left: 5vw; top: var(--nav-h); bottom: 0;
+      width: 1px; background: var(--border2); pointer-events: none;
     }
-    .cta-block p { color: var(--muted); font-size: 0.9rem; margin-bottom: 36px; }
-    .cta-link {
+    .hero-body {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 64px 5vw 40px calc(5vw + 56px);
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 24px;
+    }
+    .hero-title {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem; letter-spacing: 0.2em;
-      color: var(--white); display: inline-flex; align-items: center; gap: 14px;
+      font-size: clamp(5.5rem, 14vw, 14rem);
+      line-height: 0.88; letter-spacing: 0.02em;
+      margin-bottom: 0;
+    }
+    .hero-title .t1 { display: block; color: var(--white); }
+    .hero-title .t2 {
+      display: block; color: transparent;
+      -webkit-text-stroke: 1.5px rgba(220,20,60,0.55);
+    }
+    .hero-title .t3 { display: block; color: var(--red); }
+
+    .hero-aside {
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 280px;
+      border-left: 1px solid var(--border);
+      padding: 36px 32px;
+    }
+    .hero-aside p {
+      font-size: 0.86rem; color: var(--light); line-height: 1.85;
+    }
+    .hero-aside p + p { margin-top: 12px; }
+    .hero-aside p strong { color: var(--white); font-weight: 500; }
+    .hero-aside-link {
+      display: inline-block; margin-top: 24px;
+      font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); border-bottom: 1px solid var(--red); padding-bottom: 2px;
+      transition: letter-spacing 0.3s;
+    }
+    .hero-aside-link:hover { letter-spacing: 0.16em; }
+
+    .hero-footer {
+      border-top: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 18px calc(5vw + 56px);
+      font-size: 0.7rem; color: var(--muted); letter-spacing: 0.06em;
+    }
+    .hero-footer-tags { display: flex; gap: 20px; justify-content: center; }
+    .hero-footer-right { text-align: right; }
+
+    /* ── INTRO STRIP ──────────────────────────────── */
+    .intro-strip {
+      padding: 64px 5vw;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .intro-strip h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1; letter-spacing: 0.04em; color: var(--white);
+    }
+    .intro-strip h2 em { font-style: normal; color: var(--red); }
+    .intro-right p { font-size: 0.92rem; color: var(--light); line-height: 1.9; }
+    .intro-right p + p { margin-top: 14px; }
+    .intro-right p strong { color: var(--white); font-weight: 500; }
+
+    /* ── SERVICES ─────────────────────────────────── */
+    .services-layout {
+      display: grid; grid-template-columns: 300px 1fr;
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; margin-top: 56px;
+    }
+    .services-sidebar {
+      background: var(--surface); padding: 44px 36px;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+    }
+    .services-sidebar h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem; letter-spacing: 0.04em; line-height: 1;
+      margin-bottom: 18px;
+    }
+    .services-sidebar p { font-size: 0.86rem; color: var(--muted); line-height: 1.85; }
+    .services-sidebar-note {
+      margin-top: auto; padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem; color: var(--muted); line-height: 1.75;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+    }
+    .svc-item {
+      padding: 30px 26px;
+      border-right: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+      transition: background 0.25s;
+      position: relative;
+    }
+    .svc-item:hover { background: var(--red-dim); }
+    .svc-item::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--red); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .svc-item:hover::before { transform: scaleX(1); }
+    .svc-item:nth-child(3n) { border-right: none; }
+    .svc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.22em; color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .svc-item h4 { font-size: 0.88rem; font-weight: 500; margin-bottom: 6px; }
+    .svc-item p { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── MISSION ──────────────────────────────────── */
+    .mission-block {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 5vw;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .mission-left .big-q {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+      line-height: 1.0; letter-spacing: 0.04em;
+    }
+    .mission-left .big-q em { font-style: normal; color: var(--red); }
+    .mission-left .big-q span { color: var(--blue-mid); }
+    .mission-right p { font-size: 0.92rem; color: var(--light); line-height: 1.9; }
+    .mission-right p + p { margin-top: 14px; }
+    .founder-card {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 32px; padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .founder-card img {
+      width: 44px; height: 44px; border-radius: 50%;
+      object-fit: cover; object-position: center top;
+      border: 1px solid rgba(220,20,60,0.35);
+      flex-shrink: 0;
+    }
+    .founder-name { font-size: 0.87rem; font-weight: 500; }
+    .founder-role { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── NUMBERS ──────────────────────────────────── */
+    /* inherited from style.css */
+
+    /* ── COURSES TEASER ───────────────────────────── */
+    .courses-teaser { background: var(--surface2); }
+    .courses-head {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 40px; flex-wrap: wrap; gap: 16px;
+    }
+    .courses-4 {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    }
+    .course-cell {
+      padding: 30px 28px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s;
+    }
+    .course-cell:nth-child(even) { border-right: none; }
+    .course-cell:hover { background: var(--blue-dim); }
+    .course-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 10px; margin-bottom: 10px;
+    }
+    .course-cell h4 { font-size: 0.92rem; font-weight: 500; line-height: 1.35; }
+    .cs-badge {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
+      padding: 4px 9px; border-radius: 2px;
+      background: var(--blue-dim); color: #7AA3FF;
+      border: 1px solid rgba(0,56,147,0.25);
+    }
+    .course-cell p { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+    .course-cell .course-meta {
+      margin-top: 10px; font-size: 0.7rem; color: var(--muted);
+      display: flex; gap: 14px;
+    }
+    .course-meta span strong { color: var(--light); font-weight: 500; }
+
+    /* ── BLOG TEASER ──────────────────────────────── */
+    .blog-rows { margin-top: 48px; }
+    .blog-row {
+      display: grid; grid-template-columns: 64px 1fr 90px;
+      gap: 24px; align-items: start;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--border2);
+      transition: opacity 0.2s;
+    }
+    .blog-row:first-child { border-top: 1px solid var(--border2); }
+    .blog-row:hover .blog-row-title { color: var(--red); }
+    .blog-idx {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; color: rgba(255,255,255,0.06);
+      letter-spacing: 0.08em; padding-top: 2px;
+    }
+    .blog-row-cat {
+      font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 5px;
+    }
+    .blog-row-title {
+      font-size: 0.93rem; font-weight: 400; line-height: 1.4;
+      color: var(--white); margin-bottom: 4px; transition: color 0.2s;
+    }
+    .blog-row-sub { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+    .blog-row-date { font-size: 0.7rem; color: var(--muted); text-align: right; padding-top: 3px; }
+
+    /* ── CTA ──────────────────────────────────────── */
+    .cta-section {
+      padding: 110px 5vw;
+      border-top: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::after {
+      content: 'NTS';
+      position: absolute; right: 1vw; bottom: -3vw;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 24vw; letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.013); pointer-events: none; line-height: 1;
+    }
+    .cta-section .h2 { margin-bottom: 10px; }
+    .cta-section p { font-size: 0.9rem; color: var(--muted); margin-bottom: 36px; max-width: 400px; }
+    .cta-action {
+      display: inline-flex; align-items: center; gap: 14px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem; letter-spacing: 0.18em; color: var(--white);
       transition: gap 0.3s;
     }
-    .cta-link span { color: var(--red); font-size: 1.3rem; }
-    .cta-link:hover { gap: 22px; }
+    .cta-action .arr { color: var(--red); font-size: 1.3rem; transition: transform 0.3s; }
+    .cta-action:hover { gap: 22px; }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--off);
-      border-top: 3px solid transparent;
-      border-image: linear-gradient(90deg, var(--red) 50%, var(--blue) 50%) 1;
-      padding: 64px 5vw 32px;
-    }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr;
-      gap: 48px; margin-bottom: 48px;
-      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .footer-logo {
-      font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
-      letter-spacing: 0.1em; margin-bottom: 14px;
-    }
-    .footer-brand p { font-size: 0.82rem; color: var(--muted); line-height: 1.8; max-width: 240px; }
-    .footer-col h4 {
-      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 16px;
-    }
-    .footer-col li + li { margin-top: 10px; }
-    .footer-col a { font-size: 0.83rem; color: var(--light); transition: color 0.2s; }
-    .footer-col a:hover { color: var(--white); }
-    .footer-bottom {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.72rem; color: var(--muted);
-    }
-    .footer-socials { display: flex; gap: 20px; }
-    .footer-socials a {
-      font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em;
-      text-transform: uppercase; transition: color 0.2s;
-    }
-    .footer-socials a:hover { color: var(--white); }
-
-    /* ── HAMBURGER ── */
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { width: 22px; height: 1px; background: var(--white); }
-
-    /* ── RESPONSIVE ── */
+    /* ── RESPONSIVE ───────────────────────────────── */
     @media (max-width: 960px) {
-      .hero-right { display: none; }
-      .hero-main { padding-left: 32px; }
-      .hero-bottom { padding: 20px 32px; }
-      .services-wrap { grid-template-columns: 1fr; }
-      .services-right { grid-template-columns: 1fr; }
-      .mission-strip { grid-template-columns: 1fr; gap: 40px; }
-      .numbers { grid-template-columns: 1fr 1fr; }
-      .num-block { border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .courses-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      nav.open .nav-links {
-        display: flex; flex-direction: column;
-        position: fixed; top: 68px; left: 0; right: 0;
-        background: var(--off); padding: 28px 5vw; gap: 20px;
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-      }
-      .blog-post { grid-template-columns: 1fr; gap: 6px; }
-      .blog-num { display: none; }
+      .hero-aside { display: none; }
+      .hero-body { padding-left: calc(5vw + 20px); }
+      .hero-footer { padding: 18px 5vw; grid-template-columns: 1fr; gap: 10px; }
+      .hero-footer-tags { justify-content: flex-start; }
+      .hero-footer-right { text-align: left; }
+      .intro-strip { grid-template-columns: 1fr; gap: 32px; }
+      .services-layout { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .mission-block { grid-template-columns: 1fr; gap: 40px; }
+      .courses-4 { grid-template-columns: 1fr; }
+      .blog-row { grid-template-columns: 1fr; gap: 6px; }
+      .blog-idx { display: none; }
+      .blog-row-date { text-align: left; }
     }
-    @media (max-width: 560px) {
-      .numbers { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; gap: 16px; }
+    @media (max-width: 600px) {
       .hero-title { font-size: clamp(4rem, 18vw, 7rem); }
-      .courses-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-item:nth-child(3n) { border-right: none; }
+      .svc-item { border-right: none; }
+      .courses-4 { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
-<nav id="nav">
-  <a href="index.html" class="logo">
-    <span>N</span><span>T</span><span>S</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="courses.html">Courses</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="contact.html" class="nav-contact">Let's Talk</a></li>
-  </ul>
-  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
-</nav>
+<div id="nav-ph"></div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-main">
-    <div class="hero-year">Est. February 2025 — Imadol, Lalitpur</div>
+  <div class="hero-line"></div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">Est. February 2025 — Imadol, Lalitpur, Nepal</div>
     <h1 class="hero-title">
-      <span class="line-1">NEPAL</span>
-      <span class="line-2">TECHNOLOGY</span>
-      <span class="line-3">SERVICE</span>
+      <span class="t1">NEPAL</span>
+      <span class="t2">TECHNOLOGY</span>
+      <span class="t3">SERVICE</span>
     </h1>
-    <div class="hero-right">
-      <p>We build <strong>websites, apps, and software</strong> the way the best teams in the world build them — and we do it from Nepal.</p>
-      <p>International standards. Local understanding. No compromises.</p>
-      <a href="services.html" class="hero-cta">See what we do</a>
+    <div class="hero-aside">
+      <p>We build <strong>websites, apps, and software</strong> to the standard the best teams in the world hold themselves to.</p>
+      <p>Not close to that standard. <strong>That standard.</strong> From Nepal.</p>
+      <a href="services.html" class="hero-aside-link">See what we do</a>
     </div>
   </div>
-  <div class="hero-bottom">
-    <span>© 2025 Nepal Technology Service</span>
-    <div class="hero-bottom-services">
-      <span>Web Dev</span>
-      <span>Apps</span>
-      <span>Security</span>
-      <span>Cloud</span>
-      <span>DevOps</span>
+  <div class="hero-footer">
+    <span>Full-Stack IT Company</span>
+    <div class="hero-footer-tags">
+      <span>Web</span><span>Apps</span><span>Security</span><span>Cloud</span><span>DevOps</span>
     </div>
-    <span>contact@nepaltechnologyservice.com</span>
+    <span class="hero-footer-right">contact@nepaltechnologyservice.com</span>
   </div>
 </section>
 
+<!-- INTRO -->
+<div class="intro-strip">
+  <h2>WE EXIST TO CLOSE<br>THE GAP BETWEEN <em>NEPAL</em><br>AND THE WESTERN<br>TECH WORLD.</h2>
+  <div class="intro-right">
+    <p>Nepal has no shortage of engineering talent. What it's been missing is a company that treats international standards not as something to aspire to — but as the <strong>baseline</strong>. The floor, not the ceiling.</p>
+    <p>Every project we take on — whether it's a startup's first website or a production cloud deployment — is built the way the best engineering teams in the US, UK, and Europe would build it. <strong>Proper CI/CD. Proper security. Proper documentation.</strong> No cutting corners because the client won't notice.</p>
+    <p>They might not notice. We would.</p>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section class="section">
-  <span class="tag">What We Do</span>
-  <h2 class="h2">FULL STACK IT.<br>NO COMPROMISES.</h2>
-  <div class="services-wrap">
-    <div class="services-left">
+  <span class="label">What We Do</span>
+  <h2 class="h2">ELEVEN SERVICES.<br>ONE STANDARD.</h2>
+  <div class="services-layout" data-reveal>
+    <div class="services-sidebar">
       <div>
-        <p>One team. Eleven services. The same standard across every single one — because we'd want it that way if we were the client.</p>
-        <a href="services.html" class="services-all-link">View all services →</a>
+        <h3>FULL<br>STACK<br>IT.</h3>
+        <p>One team. One standard. Eleven services — from the first design wireframe to a production cloud deployment on AWS.</p>
+        <p style="margin-top:12px;">We don't subcontract. We don't outsource. Everything is built in-house, in Lalitpur.</p>
+      </div>
+      <div class="services-sidebar-note">
+        Every service is delivered with proper documentation, version control, and a handover process that means you're never locked into us.
+        <br><br>
+        <a href="services.html" class="text-link">View all services in detail →</a>
       </div>
     </div>
-    <div class="services-right">
-      <div class="svc"><div class="svc-num">01</div><h3>Web Development</h3><p>Custom-built, fast, secure. No templates.</p></div>
-      <div class="svc"><div class="svc-num">02</div><h3>Mobile Apps</h3><p>iOS and Android. Built to actually work.</p></div>
-      <div class="svc"><div class="svc-num">03</div><h3>Cybersecurity</h3><p>SANS-standard security for your systems.</p></div>
-      <div class="svc"><div class="svc-num">04</div><h3>Cloud & DevOps</h3><p>AWS, Terraform, CI/CD. Deployed properly.</p></div>
-      <div class="svc"><div class="svc-num">05</div><h3>UI/UX Design</h3><p>Design that earns its place. Every pixel.</p></div>
-      <div class="svc"><div class="svc-num">06</div><h3>IT Consulting</h3><p>Honest advice. No jargon. No upselling.</p></div>
+    <div class="services-grid">
+      <div class="svc-item">
+        <div class="svc-num">01</div>
+        <h4>Web Development</h4>
+        <p>Custom websites and web apps. React, Next.js, Node.js. Fast, secure, properly deployed.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">02</div>
+        <h4>Mobile App Development</h4>
+        <p>iOS and Android. Native performance, cross-platform where it makes sense.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">03</div>
+        <h4>Cybersecurity</h4>
+        <p>Penetration testing, security audits, incident response — SANS-standard delivery.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">04</div>
+        <h4>Cloud & DevOps</h4>
+        <p>AWS architecture, Terraform IaC, CI/CD pipelines. Infrastructure that scales.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">05</div>
+        <h4>UI/UX Design</h4>
+        <p>User research, wireframes, prototypes, design systems. Design with intent.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">06</div>
+        <h4>API Development</h4>
+        <p>REST and GraphQL APIs with versioning, documentation, and error handling done right.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">07</div>
+        <h4>Software Development</h4>
+        <p>Bespoke software for specific problems. Not repackaged SaaS tools — built for you.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">08</div>
+        <h4>QA & Testing</h4>
+        <p>Automated and manual testing. Unit, integration, E2E. Shipped code you can trust.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">09</div>
+        <h4>Digital Marketing</h4>
+        <p>SEO, content strategy, paid campaigns. Marketing that understands the product.</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-num">10</div>
+        <h4>IT Consulting</h4>
+        <p>Strategic tech advice for businesses modernising or scaling. Honest, no upselling.</p>
+      </div>
+      <div class="svc-item" style="border-right:none;">
+        <div class="svc-num">11</div>
+        <h4>Branding & Identity</h4>
+        <p>Logos, visual systems, and brand guidelines for companies that want to look the part.</p>
+      </div>
+      <div class="svc-item" style="border-right:none; background:var(--red-dim);">
+        <div class="svc-num" style="color:var(--red);">+</div>
+        <h4>Growing.</h4>
+        <p>We're a young company. New capabilities get added as the team grows.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- MISSION -->
-<div class="mission-strip">
-  <div class="mission-quote">
-    BRIDGING NEPAL TO THE <em>WESTERN</em> TECH WORLD.
+<div class="mission-block">
+  <div class="mission-left" data-reveal>
+    <div class="big-q">
+      BRIDGING<br>NEPAL TO<br>THE <em>WESTERN</em><br><span>TECH WORLD.</span>
+    </div>
   </div>
-  <div class="mission-body">
-    <p>Nepal has brilliant engineers. What it hasn't had is a tech company that holds itself to the same standard as the best firms in the world.</p>
-    <p>That's the gap NTS exists to close — one project at a time, from Imadol, Lalitpur.</p>
-    <div class="mission-founder">
-      <img src="images/shivam.jpg" alt="Shivam Pajiyar" />
+  <div class="mission-right" data-reveal>
+    <p>Nepal has brilliant engineers. The gap isn't talent — it's exposure. Most developers here have never worked inside a team that runs proper sprint cycles, does code reviews, writes meaningful tests, or treats documentation as part of the job.</p>
+    <p>NTS exists to be that team — and to prove that geography doesn't have to determine the quality of what you build.</p>
+    <p>We're two years in. We've shipped real products to production. We're just getting started.</p>
+    <div class="founder-card">
+      <img src="images/shivam.jpg" alt="Shivam Pajiyar, CTO" />
       <div>
-        <div class="mission-founder-name">Shivam Pajiyar</div>
-        <div class="mission-founder-role">Founder & CTO — Nepal Technology Service</div>
+        <div class="founder-name">Shivam Pajiyar</div>
+        <div class="founder-role">Founder & CTO, Nepal Technology Service</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- NUMBERS -->
-<div class="numbers">
-  <div class="num-block">
+<div class="numbers-bar">
+  <div class="num-cell" data-reveal>
     <div class="num-val">2<sup>yrs</sup></div>
-    <div class="num-label">In Business</div>
+    <div class="num-desc">Founded February 2025.<br>Imadol, Lalitpur.</div>
   </div>
-  <div class="num-block">
+  <div class="num-cell" data-reveal>
     <div class="num-val">11<sup>+</sup></div>
-    <div class="num-label">Services Offered</div>
+    <div class="num-desc">Services offered<br>under one roof.</div>
   </div>
-  <div class="num-block">
+  <div class="num-cell" data-reveal>
     <div class="num-val">97<sup>%</sup></div>
-    <div class="num-label">GSEC Score</div>
+    <div class="num-desc">GSEC exam score.<br>GIAC Advisory Board.</div>
   </div>
-  <div class="num-block">
+  <div class="num-cell" data-reveal>
     <div class="num-val">100<sup>%</sup></div>
-    <div class="num-label">Built in Nepal</div>
+    <div class="num-desc">Built in Nepal.<br>No offshore. No excuses.</div>
   </div>
 </div>
 
 <!-- COURSES -->
-<section class="section courses-section">
-  <div class="courses-header">
+<section class="section courses-teaser">
+  <div class="courses-head">
     <div>
-      <span class="tag">Education</span>
+      <span class="label">Education</span>
       <h2 class="h2">COURSES<br>COMING SOON.</h2>
+      <p class="body" style="margin-top:10px;max-width:420px;">Real cybersecurity courses from a practitioner who's done the work — not a professor who teaches it.</p>
     </div>
-    <a href="courses.html" style="font-size:0.76rem;color:var(--light);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:3px;">Full curriculum →</a>
+    <a href="courses.html" class="text-link">Full curriculum →</a>
   </div>
-  <div class="courses-grid">
-    <div class="course-item">
-      <div class="course-item-top">
-        <h3>Security Fundamentals</h3>
-        <span class="course-cs">Coming Soon</span>
+  <div class="courses-4">
+    <div class="course-cell" data-reveal>
+      <div class="course-top">
+        <h4>Security Fundamentals</h4>
+        <span class="cs-badge">Coming Soon</span>
       </div>
-      <p>Networks, cryptography, access control — the foundation every security professional needs.</p>
+      <p>Networks, systems, cryptography, access control — the non-negotiable foundation every security professional must know cold.</p>
+      <div class="course-meta"><span>Level: <strong>Beginner</strong></span><span>Based on: <strong>SANS SEC401</strong></span></div>
     </div>
-    <div class="course-item">
-      <div class="course-item-top">
-        <h3>Ethical Hacking & Incident Handling</h3>
-        <span class="course-cs">Coming Soon</span>
+    <div class="course-cell" data-reveal>
+      <div class="course-top">
+        <h4>Ethical Hacking & Incident Handling</h4>
+        <span class="cs-badge">Coming Soon</span>
       </div>
-      <p>Real penetration testing and incident response. GCIH-certified instructor.</p>
+      <p>Penetration testing methodologies, hacker tools, and incident response — taught by a GCIH-certified instructor with real-world disclosures.</p>
+      <div class="course-meta"><span>Level: <strong>Intermediate</strong></span><span>Based on: <strong>SANS SEC504</strong></span></div>
     </div>
-    <div class="course-item">
-      <div class="course-item-top">
-        <h3>Cybersecurity Essentials</h3>
-        <span class="course-cs">Coming Soon</span>
+    <div class="course-cell" data-reveal>
+      <div class="course-top">
+        <h4>Cybersecurity Essentials</h4>
+        <span class="cs-badge">Coming Soon</span>
       </div>
-      <p>Threats, defenses, risk management — the complete picture for modern security.</p>
+      <p>Threats, attack patterns, defenses, and risk management — the full operational picture for working security professionals.</p>
+      <div class="course-meta"><span>Level: <strong>Intermediate</strong></span><span>Based on: <strong>GFACT</strong></span></div>
     </div>
-    <div class="course-item">
-      <div class="course-item-top">
-        <h3>Cyber Writing & Communication</h3>
-        <span class="course-cs">Coming Soon</span>
+    <div class="course-cell" data-reveal>
+      <div class="course-top">
+        <h4>Cyber Writing & Communication</h4>
+        <span class="cs-badge">Coming Soon</span>
       </div>
-      <p>Write reports, communicate risk, present to executives. The most underrated security skill.</p>
+      <p>Security reports, executive briefings, risk communication — the skill most security professionals never develop and every employer wants.</p>
+      <div class="course-meta"><span>Level: <strong>All Levels</strong></span><span>Based on: <strong>SANS SEC402</strong></span></div>
     </div>
   </div>
 </section>
 
 <!-- BLOG -->
 <section class="section">
-  <span class="tag">From The Blog</span>
-  <h2 class="h2">STRAIGHT TALK<br>ON TECH.</h2>
-  <div class="blog-list">
-    <a href="blog.html" class="blog-post">
-      <div class="blog-num">01</div>
+  <span class="label">From The Blog</span>
+  <h2 class="h2">STRAIGHT TALK.<br>NO FILLER.</h2>
+  <div class="blog-rows">
+    <a href="blog.html#post-1" class="blog-row">
+      <div class="blog-idx">01</div>
       <div>
-        <div class="blog-cat">Standards</div>
-        <div class="blog-title">Why "Good Enough" Is Killing Nepali Tech Companies</div>
-        <div class="blog-excerpt">International clients don't care about your local reputation. Here's what they actually check.</div>
+        <div class="blog-row-cat">Standards</div>
+        <div class="blog-row-title">Why "Good Enough" Is Killing Nepali Tech Companies</div>
+        <div class="blog-row-sub">International clients run technical due diligence. Here's exactly what they check — and why most Nepali vendors fail it.</div>
       </div>
-      <div class="blog-date">May 2025</div>
+      <div class="blog-row-date">May 2025<br>5 min</div>
     </a>
-    <a href="blog.html" class="blog-post">
-      <div class="blog-num">02</div>
+    <a href="blog.html#post-2" class="blog-row">
+      <div class="blog-idx">02</div>
       <div>
-        <div class="blog-cat">AI & Tech</div>
-        <div class="blog-title">AI Isn't Coming For Your Job — But Someone Using AI Is</div>
-        <div class="blog-excerpt">How NTS thinks about AI as a tool, not a threat.</div>
+        <div class="blog-row-cat">AI</div>
+        <div class="blog-row-title">AI Isn't Coming For Your Job — But Someone Using AI Is</div>
+        <div class="blog-row-sub">How NTS uses AI tools without letting them replace judgment. And why every developer in Nepal needs to figure this out now.</div>
       </div>
-      <div class="blog-date">April 2025</div>
+      <div class="blog-row-date">Apr 2025<br>6 min</div>
     </a>
-    <a href="blog.html" class="blog-post">
-      <div class="blog-num">03</div>
+    <a href="blog.html#post-3" class="blog-row">
+      <div class="blog-idx">03</div>
       <div>
-        <div class="blog-cat">Security</div>
-        <div class="blog-title">Most Nepali Startups Have Zero Security. Here's The Minimum You Need.</div>
-        <div class="blog-excerpt">A no-fluff checklist from a GCIH-certified team.</div>
+        <div class="blog-row-cat">Security</div>
+        <div class="blog-row-title">Most Nepali Startups Have Zero Security. Here's The Minimum.</div>
+        <div class="blog-row-sub">A no-fluff checklist from a GCIH-certified team. Six things every startup must have before they ship to users.</div>
       </div>
-      <div class="blog-date">March 2025</div>
+      <div class="blog-row-date">Mar 2025<br>7 min</div>
     </a>
   </div>
-  <a href="blog.html" style="display:inline-block;margin-top:28px;font-size:0.76rem;color:var(--light);letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.1);padding-bottom:3px;">All articles →</a>
+  <a href="blog.html" class="text-link" style="margin-top:28px;display:inline-block;">All articles →</a>
 </section>
 
 <!-- CTA -->
-<div class="cta-block">
-  <span class="tag">Start a Project</span>
+<div class="cta-section">
+  <span class="label">Start a Project</span>
   <h2 class="h2">GOT SOMETHING<br>TO BUILD?</h2>
-  <p>No pitch. No deck. Just a straight conversation about your project.</p>
-  <a href="contact.html" class="cta-link">Let's talk <span>→</span></a>
+  <p>No pitch decks. No discovery workshops. Just a direct conversation about what you need and whether we're the right team to build it.</p>
+  <a href="contact.html" class="cta-action">Let's talk <span class="arr">→</span></a>
 </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="footer-logo">
-        <span style="color:var(--white)">N</span><span style="color:var(--red)">T</span><span style="color:#3A6FD8">S</span>
-      </div>
-      <p>Nepal Technology Service — bridging Nepal to international tech standards. Imadol, Lalitpur.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="services.html">Web Development</a></li>
-        <li><a href="services.html">App Development</a></li>
-        <li><a href="services.html">Cybersecurity</a></li>
-        <li><a href="services.html">Cloud & DevOps</a></li>
-        <li><a href="services.html">All Services</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="mailto:contact@nepaltechnologyservice.com">contact@nepaltechnologyservice.com</a></li>
-        <li><a href="#">Imadol, Lalitpur, Nepal</a></li>
-        <li><a href="courses.html">Courses — Coming Soon</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2025 Nepal Technology Service</span>
-    <div class="footer-socials">
-      <a href="#">Facebook</a>
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">X</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  document.getElementById('ham').addEventListener('click', () => {
-    document.getElementById('nav').classList.toggle('open');
-  });
-</script>
+<div id="footer-ph"></div>
+<script src="js/main.js"></script>
 </body>
 </html>

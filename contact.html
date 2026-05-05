@@ -4,87 +4,128 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Nepal Technology Service</title>
-  <meta name="description" content="Get in touch with Nepal Technology Service — Imadol, Lalitpur, Nepal." />
+  <meta name="description" content="Get in touch with Nepal Technology Service — based in Imadol, Lalitpur, Nepal. contact@nepaltechnologyservice.com" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
+    /* LAYOUT */
     .contact-layout {
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start;
+      display: grid; grid-template-columns: 360px 1fr;
+      gap: 72px; align-items: start;
     }
-    .contact-info { position: sticky; top: 100px; }
-    .contact-info h2 {
-      font-family: var(--font-head); font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; line-height: 1.1; letter-spacing: -0.04em; margin-bottom: 20px;
+    .contact-info-col { position: sticky; top: calc(var(--nav-h) + 24px); }
+
+    /* INFO */
+    .contact-info-col h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      line-height: 0.97; letter-spacing: 0.04em; margin-bottom: 20px;
     }
-    .contact-info > p { color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 40px; }
+    .contact-intro { font-size: 0.9rem; color: var(--light); line-height: 1.85; margin-bottom: 36px; }
+
     .contact-detail {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 20px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 18px 0; border-bottom: 1px solid var(--border2);
     }
-    .contact-detail:first-of-type { border-top: 1px solid var(--border); margin-top: 8px; }
-    .contact-detail-icon {
-      width: 40px; height: 40px; border-radius: 8px; flex-shrink: 0;
-      background: var(--red-muted); border: 1px solid rgba(220,20,60,0.15);
-      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    .contact-detail:first-of-type { border-top: 1px solid var(--border2); }
+    .cd-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
     }
-    .contact-detail-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-    .contact-detail-value { font-size: 0.95rem; color: var(--white); }
-    .contact-detail-value a { color: var(--white); transition: color 0.2s; }
-    .contact-detail-value a:hover { color: var(--red); }
+    .cd-label {
+      font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 3px;
+    }
+    .cd-value { font-size: 0.88rem; color: var(--white); }
+    .cd-value a { transition: color 0.2s; }
+    .cd-value a:hover { color: var(--red); }
+    .cd-note { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    .contact-honesty {
+      margin-top: 32px; padding: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 4px; border-left: 3px solid var(--red);
+    }
+    .contact-honesty p { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+    .contact-honesty p strong { color: var(--light); font-weight: 500; }
 
     /* FORM */
-    .contact-form-wrap {
+    .contact-form-col { }
+    .form-wrap {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 48px;
+      border-radius: 4px; padding: 44px;
     }
-    .contact-form-wrap h3 {
-      font-family: var(--font-head); font-size: 1.4rem; font-weight: 800;
-      margin-bottom: 8px;
+    .form-wrap h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; letter-spacing: 0.04em; margin-bottom: 6px;
     }
-    .contact-form-wrap > p { color: var(--muted); font-size: 0.88rem; margin-bottom: 32px; }
-    .form-group { margin-bottom: 20px; }
+    .form-wrap .form-intro { font-size: 0.85rem; color: var(--muted); margin-bottom: 32px; line-height: 1.7; }
+
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    label {
-      display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: 0.66rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 400;
     }
-    input[type="text"], input[type="email"], select, textarea {
-      width: 100%; background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 13px 16px; color: var(--white);
-      font-family: var(--font-body); font-size: 0.92rem; outline: none;
-      transition: border-color 0.2s;
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; background: var(--black); border: 1px solid var(--border);
+      border-radius: 3px; padding: 12px 14px; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.88rem;
+      outline: none; transition: border-color 0.2s; line-height: 1.5;
     }
-    input[type="text"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
-      border-color: var(--red);
-    }
-    input::placeholder, textarea::placeholder { color: var(--muted); }
-    select { appearance: none; cursor: pointer; }
-    select option { background: var(--surface2); }
-    textarea { resize: vertical; min-height: 130px; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: rgba(220,20,60,0.4); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); }
+    .form-group select { appearance: none; cursor: pointer; }
+    .form-group select option { background: var(--surface); }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
     .form-submit {
-      width: 100%; padding: 16px; background: var(--red); color: #fff;
-      border: none; border-radius: 8px; font-family: var(--font-body);
-      font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 8px;
-      transition: background 0.2s, transform 0.2s;
+      width: 100%; padding: 15px;
+      background: var(--red); color: #fff;
+      border: none; border-radius: 3px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: 0.12em;
+      cursor: pointer; transition: background 0.2s;
+      margin-top: 6px;
     }
-    .form-submit:hover { background: var(--red-dark); transform: translateY(-2px); }
-    .form-note { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 12px; }
-
-    /* MAP PLACEHOLDER */
-    .location-section { background: var(--surface); }
-    .map-placeholder {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: var(--radius); height: 280px; margin-top: 40px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px; color: var(--muted); font-size: 0.9rem;
+    .form-submit:hover { background: #B8102E; }
+    .form-note {
+      text-align: center; font-size: 0.72rem; color: var(--muted);
+      margin-top: 12px; line-height: 1.6;
     }
-    .map-placeholder .map-icon { font-size: 2.5rem; }
-    .map-placeholder strong { color: var(--white); font-family: var(--font-head); font-size: 1.1rem; }
 
-    @media (max-width: 900px) {
+    /* EXPECTATIONS */
+    .expectations-section { background: var(--surface); }
+    .exp-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--border);
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; margin-top: 48px;
+    }
+    .exp-cell {
+      background: var(--surface); padding: 32px 28px;
+      transition: background 0.25s;
+    }
+    .exp-cell:hover { background: var(--surface2); }
+    .exp-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; color: rgba(255,255,255,0.05);
+      line-height: 1; margin-bottom: 12px;
+    }
+    .exp-cell h4 { font-size: 0.88rem; font-weight: 500; margin-bottom: 8px; }
+    .exp-cell p { font-size: 0.8rem; color: var(--muted); line-height: 1.75; }
+
+    @media (max-width: 960px) {
       .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-      .contact-info { position: static; }
+      .contact-info-col { position: static; }
+      .form-wrap { padding: 28px 20px; }
       .form-row { grid-template-columns: 1fr; }
-      .contact-form-wrap { padding: 28px; }
+      .exp-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -93,115 +134,162 @@
 
 <div class="page-hero">
   <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Contact</div>
-  <h1>Let's Talk<br>About Your<br><span style="color:var(--red)">Project.</span></h1>
-  <p>No sales pitch. No fluff. Just a straight conversation about what you need and whether we're the right team to build it.</p>
+  <h1>LET'S TALK<br>ABOUT YOUR<br><span style="color:var(--red)">PROJECT.</span></h1>
+  <p>No pitch decks. No discovery workshops you have to pay for. Just a direct conversation about what you're building and whether NTS is the right team to build it with you.</p>
 </div>
 
 <section class="section">
   <div class="contact-layout">
-    <div class="contact-info fade-up">
-      <div class="section-tag">Get In Touch</div>
-      <h2>We're Based in<br>Lalitpur,<br>Nepal.</h2>
-      <p>We work with clients across Nepal and internationally. Drop us an email or fill out the form — we respond within 24 hours.</p>
+
+    <!-- INFO -->
+    <div class="contact-info-col" data-reveal>
+      <span class="label">Get In Touch</span>
+      <h2>WE'RE IN<br>LALITPUR,<br>NEPAL.</h2>
+      <p class="contact-intro">We work with clients across Nepal and internationally. Email is the best way to reach us. We respond to every message within 24 hours — usually faster.</p>
 
       <div class="contact-detail">
-        <div class="contact-detail-icon">✉️</div>
+        <div class="cd-icon">✉</div>
         <div>
-          <div class="contact-detail-label">Email</div>
-          <div class="contact-detail-value">
-            <a href="mailto:contact@nepaltechnologyservice.com">contact@nepaltechnologyservice.com</a>
-          </div>
+          <div class="cd-label">Email</div>
+          <div class="cd-value"><a href="mailto:contact@nepaltechnologyservice.com">contact@nepaltechnologyservice.com</a></div>
+          <div class="cd-note">Response within 24 hours</div>
         </div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">📍</div>
+        <div class="cd-icon">📍</div>
         <div>
-          <div class="contact-detail-label">Location</div>
-          <div class="contact-detail-value">Imadol, Lalitpur, Nepal</div>
+          <div class="cd-label">Location</div>
+          <div class="cd-value">Imadol, Lalitpur, Nepal</div>
+          <div class="cd-note">In-person meetings available locally</div>
         </div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">🕐</div>
+        <div class="cd-icon">🌐</div>
         <div>
-          <div class="contact-detail-label">Response Time</div>
-          <div class="contact-detail-value">Within 24 hours</div>
+          <div class="cd-label">Clients</div>
+          <div class="cd-value">Nepal & International</div>
+          <div class="cd-note">We work across time zones — no issue</div>
         </div>
       </div>
       <div class="contact-detail">
-        <div class="contact-detail-icon">🌐</div>
+        <div class="cd-icon">⏱</div>
         <div>
-          <div class="contact-detail-label">We Work With</div>
-          <div class="contact-detail-value">Clients in Nepal & internationally</div>
+          <div class="cd-label">Project Start</div>
+          <div class="cd-value">Typically 1–2 weeks from agreement</div>
+          <div class="cd-note">Depending on current workload</div>
         </div>
+      </div>
+
+      <div class="contact-honesty">
+        <p><strong>Honest about fit:</strong> if we're not the right team for what you need — whether that's scope, budget, or specialisation — we'll tell you that in the first conversation. We'd rather refer you somewhere better than take on a project we can't deliver well.</p>
       </div>
     </div>
 
-    <div class="contact-form-wrap fade-up" data-delay="0.12s">
-      <h3>Start a Conversation</h3>
-      <p>Tell us about your project and we'll get back to you with honest thoughts — not a sales deck.</p>
-      <form action="mailto:contact@nepaltechnologyservice.com" method="post" enctype="text/plain">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Full name" required />
+    <!-- FORM -->
+    <div class="contact-form-col" data-reveal>
+      <div class="form-wrap">
+        <h3>START A CONVERSATION</h3>
+        <p class="form-intro">Tell us about your project. The more context you give, the more useful our first response will be. No form is too long if it means we understand what you actually need.</p>
+
+        <form action="mailto:contact@nepaltechnologyservice.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
           </div>
+
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            <label for="company">Company / Organisation (if applicable)</label>
+            <input type="text" id="company" name="company" placeholder="Company name or individual" />
           </div>
-        </div>
-        <div class="form-group">
-          <label for="service">What Do You Need?</label>
-          <select id="service" name="service">
-            <option value="">Select a service...</option>
-            <option>Web Development</option>
-            <option>Mobile App Development</option>
-            <option>UI/UX Design</option>
-            <option>Cybersecurity</option>
-            <option>Cloud & DevOps</option>
-            <option>API Development & Integration</option>
-            <option>Software Development</option>
-            <option>Quality Assurance & Testing</option>
-            <option>Digital Marketing</option>
-            <option>IT Consulting</option>
-            <option>Something Else</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="budget">Rough Budget Range</label>
-          <select id="budget" name="budget">
-            <option value="">Select budget range...</option>
-            <option>Under $500</option>
-            <option>$500 – $2,000</option>
-            <option>$2,000 – $10,000</option>
-            <option>$10,000+</option>
-            <option>Not sure yet</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Tell Us About Your Project</label>
-          <textarea id="message" name="message" placeholder="What are you building? What problem does it solve? What's your timeline?" required></textarea>
-        </div>
-        <button type="submit" class="form-submit">Send Message →</button>
-        <p class="form-note">We read every message. You'll hear from us within 24 hours.</p>
-      </form>
+
+          <div class="form-group">
+            <label for="service">What Do You Need?</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select the primary service</option>
+              <option>Web Development</option>
+              <option>Mobile App Development</option>
+              <option>UI/UX Design</option>
+              <option>Cybersecurity Consulting</option>
+              <option>Cloud Architecture & DevOps</option>
+              <option>API Development & Integration</option>
+              <option>Custom Software Development</option>
+              <option>Quality Assurance & Testing</option>
+              <option>Digital Marketing & SEO</option>
+              <option>IT Consulting</option>
+              <option>Multiple Services</option>
+              <option>Something Else</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Approximate Budget</label>
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Select a range (helps us scope properly)</option>
+              <option>Under $500</option>
+              <option>$500 – $2,000</option>
+              <option>$2,000 – $5,000</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,000+</option>
+              <option>Not sure yet — let's talk</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline">Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="" disabled selected>When do you need this?</option>
+              <option>ASAP (within 2 weeks)</option>
+              <option>Within a month</option>
+              <option>Within 3 months</option>
+              <option>Flexible — quality over speed</option>
+              <option>Just exploring options</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell Us About the Project</label>
+            <textarea id="message" name="message" required placeholder="What are you building? What problem does it solve? What does success look like? The more detail, the better our response."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">SEND MESSAGE →</button>
+          <p class="form-note">We read every message. Response within 24 hours — usually same day.</p>
+        </form>
+      </div>
     </div>
+
   </div>
 </section>
 
-<!-- LOCATION -->
-<section class="section location-section">
-  <div class="section-tag">Location</div>
-  <h2 class="section-title">Find Us in Lalitpur</h2>
-  <div class="map-placeholder fade-up">
-    <div class="map-icon">📍</div>
-    <strong>Imadol, Lalitpur, Nepal</strong>
-    <span>Add your Google Maps embed here</span>
-    <a href="https://maps.google.com/?q=Imadol,Lalitpur,Nepal" target="_blank" class="btn btn-outline" style="margin-top:8px;font-size:0.82rem;padding:10px 20px;">Open in Google Maps →</a>
+<!-- WHAT TO EXPECT -->
+<section class="section expectations-section">
+  <span class="label">After You Send</span>
+  <h2 class="h2">WHAT HAPPENS<br>NEXT.</h2>
+  <div class="exp-grid">
+    <div class="exp-cell" data-reveal>
+      <div class="exp-num">01</div>
+      <h4>We Read It Properly</h4>
+      <p>Not a form-letter acknowledgement. An actual human reads your message and thinks about it before responding. Usually within a few hours, always within 24.</p>
+    </div>
+    <div class="exp-cell" data-reveal>
+      <div class="exp-num">02</div>
+      <h4>We Respond Honestly</h4>
+      <p>Our response will tell you whether we think we're a good fit, what we think the right approach is, and what questions we have. If we're not the right team, we'll say so and suggest alternatives.</p>
+    </div>
+    <div class="exp-cell" data-reveal>
+      <div class="exp-num">03</div>
+      <h4>We Scope It Clearly</h4>
+      <p>If the conversation goes forward, we produce a clear scope document before any work starts. What's included, what's not, what the deliverables are, and what the timeline looks like. No surprises.</p>
+    </div>
   </div>
 </section>
 
 <div id="footer-ph"></div>
-<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

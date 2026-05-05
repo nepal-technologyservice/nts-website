@@ -4,110 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog — Nepal Technology Service</title>
-  <meta name="description" content="Thoughts on tech standards, AI, cybersecurity and building software from Nepal." />
+  <meta name="description" content="Straight talk on tech standards, cybersecurity, AI, and building software from Nepal." />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .blog-hero-content { max-width: 640px; }
+    /* ARTICLE LIST */
+    .article-index { margin-top: 56px; }
+    .article-row {
+      display: grid; grid-template-columns: 72px 1fr 100px;
+      gap: 28px; align-items: start;
+      padding: 28px 0; border-bottom: 1px solid var(--border2);
+      transition: opacity 0.2s; cursor: pointer;
+    }
+    .article-row:first-child { border-top: 1px solid var(--border2); }
+    .article-row:hover .article-title { color: var(--red); }
+    .article-idx {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; color: rgba(255,255,255,0.06);
+      letter-spacing: 0.08em; padding-top: 2px;
+    }
+    .article-cat {
+      font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 5px;
+    }
+    .article-title {
+      font-size: 0.97rem; font-weight: 400; color: var(--white);
+      line-height: 1.4; margin-bottom: 5px; transition: color 0.2s;
+    }
+    .article-sub { font-size: 0.8rem; color: var(--muted); line-height: 1.65; }
+    .article-meta { text-align: right; font-size: 0.7rem; color: var(--muted); line-height: 1.7; }
 
-    /* FEATURED POST */
-    .featured-post {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; overflow: hidden; margin-top: 56px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      transition: border-color 0.3s; cursor: pointer;
-    }
-    .featured-post:hover { border-color: rgba(220,20,60,0.3); }
-    .featured-post-visual {
-      background: var(--surface2); min-height: 320px;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .featured-post-visual-bg {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(220,20,60,0.1), rgba(0,56,147,0.15));
-    }
-    .featured-post-visual-text {
-      position: relative; z-index: 1;
-      font-family: var(--font-head); font-size: 5rem; font-weight: 800;
-      color: rgba(255,255,255,0.05); letter-spacing: -0.05em; text-align: center; padding: 20px;
-      line-height: 1;
-    }
-    .featured-post-body { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
-    .featured-label {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--red); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
-    }
-    .featured-label::before { content: ''; width: 16px; height: 2px; background: var(--red); border-radius: 1px; }
-    .featured-post-body h2 {
-      font-family: var(--font-head); font-size: 1.8rem; font-weight: 800;
-      line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 16px;
-    }
-    .featured-post-body p { color: var(--muted); font-size: 0.92rem; line-height: 1.8; margin-bottom: 28px; }
-    .featured-post-meta { font-size: 0.78rem; color: var(--muted); display: flex; align-items: center; gap: 16px; }
-    .featured-post-meta a { color: var(--red); font-weight: 600; }
-
-    /* POST GRID */
-    .posts-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px;
-    }
-    .post-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s; cursor: pointer;
-      display: flex; flex-direction: column;
-    }
-    .post-card:hover { border-color: rgba(220,20,60,0.3); transform: translateY(-4px); }
-    .post-card-body { padding: 28px; flex: 1; }
-    .post-cat {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 4px; margin-bottom: 14px; display: inline-block;
-    }
-    .post-cat.red { background: var(--red-muted); color: var(--red); }
-    .post-cat.blue { background: var(--blue-muted); color: #6699ff; }
-    .post-cat.green { background: rgba(0,180,100,0.1); color: #00b464; }
-    .post-cat.orange { background: rgba(245,140,0,0.1); color: #f58c00; }
-    .post-card h3 {
-      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
-      line-height: 1.35; margin-bottom: 10px;
-    }
-    .post-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
-    .post-card-foot {
-      padding: 16px 28px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .post-card-foot span { font-size: 0.75rem; color: var(--muted); }
-    .post-card-foot .read-link { font-size: 0.8rem; font-weight: 700; color: var(--red); }
-
-    /* FULL ARTICLE MODAL STYLE - inline article view */
-    .article-preview {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 56px; margin-top: 20px;
-      max-width: 720px;
-    }
-    .article-preview h4 {
-      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
-      line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 20px;
-    }
-    .article-preview .article-meta {
-      display: flex; gap: 20px; margin-bottom: 28px;
-      font-size: 0.78rem; color: var(--muted); padding-bottom: 20px;
+    /* FULL ARTICLES */
+    .articles-section { background: var(--surface); border-top: 1px solid var(--border); }
+    .article-full {
+      max-width: 680px; margin: 0 auto;
+      padding: 72px 0;
       border-bottom: 1px solid var(--border);
     }
-    .article-preview p {
-      font-size: 0.95rem; color: var(--light); line-height: 1.9; margin-bottom: 16px;
+    .article-full:last-child { border-bottom: none; }
+    .article-header { margin-bottom: 36px; }
+    .article-header .cat {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); display: block; margin-bottom: 12px;
     }
-    .article-preview h5 {
-      font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
-      margin: 28px 0 10px; color: var(--white);
+    .article-header h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: 0.04em; line-height: 1; margin-bottom: 14px;
+    }
+    .article-header .article-byline {
+      font-size: 0.75rem; color: var(--muted);
+      display: flex; gap: 16px;
+    }
+    .article-body p {
+      font-size: 0.93rem; color: var(--light); line-height: 1.9;
+      margin-bottom: 18px;
+    }
+    .article-body p strong { color: var(--white); font-weight: 500; }
+    .article-body h3 {
+      font-size: 0.92rem; font-weight: 600; color: var(--white);
+      margin: 30px 0 12px; letter-spacing: 0.01em;
+    }
+    .article-body ul {
+      margin: 0 0 18px 0; padding-left: 0;
+      list-style: none;
+    }
+    .article-body ul li {
+      font-size: 0.9rem; color: var(--light); line-height: 1.8;
+      padding: 6px 0 6px 20px; position: relative;
+      border-bottom: 1px solid var(--border2);
+    }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--red); font-size: 0.8rem;
+    }
+    .article-body blockquote {
+      border-left: 3px solid var(--red); padding: 16px 24px;
+      margin: 24px 0; background: var(--surface2); border-radius: 0 4px 4px 0;
+      font-size: 0.92rem; color: var(--light); font-style: italic; line-height: 1.8;
     }
 
-    @media (max-width: 900px) {
-      .featured-post { grid-template-columns: 1fr; }
-      .posts-grid { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) {
-      .featured-post-body { padding: 28px; }
-      .article-preview { padding: 28px; }
+    @media (max-width: 960px) {
+      .article-row { grid-template-columns: 1fr; gap: 6px; }
+      .article-idx { display: none; }
+      .article-meta { text-align: left; }
+      .articles-section .section { padding: 48px 5vw; }
     }
   </style>
 </head>
@@ -116,163 +97,183 @@
 
 <div class="page-hero">
   <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Blog</div>
-  <h1>Straight Talk<br>on Tech &<br><span style="color:var(--red)">Standards.</span></h1>
-  <p>No buzzword bingo. Just honest writing about building software, staying current, and what it actually takes to compete globally from Nepal.</p>
+  <h1>STRAIGHT TALK.<br>NO <span style="color:var(--red)">FILLER.</span></h1>
+  <p>Writing about technology standards, cybersecurity, AI, and what it actually means to build software properly — from a team doing it in Nepal.</p>
 </div>
 
+<!-- ARTICLE INDEX -->
 <section class="section">
-  <div class="section-tag">Featured</div>
-  <h2 class="section-title">Latest From NTS</h2>
-
-  <!-- FEATURED -->
-  <div class="featured-post fade-up">
-    <div class="featured-post-visual">
-      <div class="featured-post-visual-bg"></div>
-      <div class="featured-post-visual-text">Good<br>Enough<br>Is Not.</div>
-    </div>
-    <div class="featured-post-body">
-      <div class="featured-label">Standards</div>
-      <h2>Why "Good Enough" Is Killing Nepali Tech Companies</h2>
-      <p>International clients don't care about your local reputation. They care about whether your code passes review, your API has proper documentation, and your deployment doesn't take down production at 3am.</p>
-      <div class="featured-post-meta">
-        <span>May 2025 · 5 min read</span>
-        <a href="#post-1">Read the full article ↓</a>
+  <span class="label">All Articles</span>
+  <h2 class="h2">EVERYTHING<br>WE'VE WRITTEN.</h2>
+  <div class="article-index">
+    <a href="#post-1" class="article-row">
+      <div class="article-idx">01</div>
+      <div>
+        <div class="article-cat">Standards</div>
+        <div class="article-title">Why "Good Enough" Is Killing Nepali Tech Companies</div>
+        <div class="article-sub">International clients run technical due diligence. Here's exactly what they check — and why most Nepali vendors fail it without knowing it.</div>
       </div>
-    </div>
-  </div>
-
-  <!-- ALL POSTS -->
-  <div style="margin-top:56px;">
-    <div class="section-tag">All Articles</div>
-  </div>
-  <div class="posts-grid">
-    <div class="post-card fade-up">
-      <div class="post-card-body">
-        <span class="post-cat blue">AI & Tech</span>
-        <h3>AI Isn't Coming For Your Job — But Someone Using AI Is</h3>
-        <p>How NTS thinks about AI as a tool, not a threat — and how every developer and business in Nepal should reframe the conversation.</p>
+      <div class="article-meta">May 2025<br>5 min read</div>
+    </a>
+    <a href="#post-2" class="article-row">
+      <div class="article-idx">02</div>
+      <div>
+        <div class="article-cat">AI</div>
+        <div class="article-title">AI Isn't Coming For Your Job — But Someone Using AI Is</div>
+        <div class="article-sub">How NTS uses AI across its workflow — and why every developer in Nepal needs to figure out their relationship with these tools before the market does it for them.</div>
       </div>
-      <div class="post-card-foot">
-        <span>April 2025 · 6 min</span>
-        <a href="#post-2" class="read-link">Read →</a>
+      <div class="article-meta">Apr 2025<br>6 min read</div>
+    </a>
+    <a href="#post-3" class="article-row">
+      <div class="article-idx">03</div>
+      <div>
+        <div class="article-cat">Security</div>
+        <div class="article-title">Most Nepali Startups Have Zero Security. Here's The Minimum.</div>
+        <div class="article-sub">Six non-negotiable security practices every startup must have before shipping to users. From a GCIH-certified team — no fluff, no scanner output dumps.</div>
       </div>
-    </div>
-    <div class="post-card fade-up" data-delay="0.08s">
-      <div class="post-card-body">
-        <span class="post-cat red">Security</span>
-        <h3>Most Nepali Startups Have Zero Security. Here's The Minimum You Need.</h3>
-        <p>A no-fluff checklist from a GCIH-certified team. Free, probably overdue, and could save your business.</p>
+      <div class="article-meta">Mar 2025<br>7 min read</div>
+    </a>
+    <a href="#post-4" class="article-row">
+      <div class="article-idx">04</div>
+      <div>
+        <div class="article-cat">Standards</div>
+        <div class="article-title">What "International Standards" Actually Means in Software</div>
+        <div class="article-sub">It's not about the framework you use. It's about process, accountability, documentation, and a culture of quality that most Nepali teams have never been exposed to.</div>
       </div>
-      <div class="post-card-foot">
-        <span>March 2025 · 7 min</span>
-        <a href="#post-3" class="read-link">Read →</a>
+      <div class="article-meta">Feb 2025<br>6 min read</div>
+    </a>
+    <a href="#post-5" class="article-row">
+      <div class="article-idx">05</div>
+      <div>
+        <div class="article-cat">DevOps</div>
+        <div class="article-title">You Don't Need a 10-Person DevOps Team. You Need Good Defaults.</div>
+        <div class="article-sub">How small teams can get proper CI/CD, infrastructure as code, and automated deployments without hiring a full SRE team. What NTS does on every project.</div>
       </div>
-    </div>
-    <div class="post-card fade-up" data-delay="0.16s">
-      <div class="post-card-body">
-        <span class="post-cat green">DevOps</span>
-        <h3>You Don't Need a 10-Person DevOps Team. You Need Good Defaults.</h3>
-        <p>How small teams can get CI/CD, infrastructure as code, and proper deployments without hiring a team of SREs.</p>
+      <div class="article-meta">Feb 2025<br>8 min read</div>
+    </a>
+    <a href="#post-6" class="article-row">
+      <div class="article-idx">06</div>
+      <div>
+        <div class="article-cat">Nepal Tech</div>
+        <div class="article-title">What It Actually Means to Build an IT Company in Nepal in 2025</div>
+        <div class="article-sub">The honest version — the real challenges, the genuine advantages, and why this moment might be better than any that came before it for Nepali tech companies.</div>
       </div>
-      <div class="post-card-foot">
-        <span>March 2025 · 8 min</span>
-        <a href="#post-4" class="read-link">Read →</a>
-      </div>
-    </div>
-    <div class="post-card fade-up" data-delay="0.0s">
-      <div class="post-card-body">
-        <span class="post-cat orange">Nepal Tech</span>
-        <h3>What It Actually Means to Build an IT Company in Nepal in 2025</h3>
-        <p>The honest version — the challenges, the advantages, and why this might be the best time to do it.</p>
-      </div>
-      <div class="post-card-foot">
-        <span>February 2025 · 5 min</span>
-        <a href="#post-5" class="read-link">Read →</a>
-      </div>
-    </div>
-    <div class="post-card fade-up" data-delay="0.08s">
-      <div class="post-card-body">
-        <span class="post-cat blue">Standards</span>
-        <h3>What "International Standards" Actually Means in Software Development</h3>
-        <p>It's not about tools or frameworks. It's about process, accountability, documentation, and a way of thinking about quality.</p>
-      </div>
-      <div class="post-card-foot">
-        <span>February 2025 · 6 min</span>
-        <a href="#post-6" class="read-link">Read →</a>
-      </div>
-    </div>
-    <div class="post-card fade-up" data-delay="0.16s">
-      <div class="post-card-body">
-        <span class="post-cat red">Security</span>
-        <h3>Why Every Developer in Nepal Should Understand Cybersecurity</h3>
-        <p>You don't need to be a security specialist. But if you're shipping software, you need to understand the basics of what can go wrong.</p>
-      </div>
-      <div class="post-card-foot">
-        <span>January 2025 · 7 min</span>
-        <a href="#post-7" class="read-link">Read →</a>
-      </div>
-    </div>
+      <div class="article-meta">Jan 2025<br>5 min read</div>
+    </a>
   </div>
 </section>
 
 <!-- FULL ARTICLES -->
-<section class="section" style="background:var(--surface);">
-  <div class="section-tag">Full Reads</div>
-  <h2 class="section-title">Read the Articles</h2>
-
-  <div id="post-1" class="article-preview fade-up" style="margin-top:40px;">
-    <span class="post-cat red">Standards</span>
-    <h4>Why "Good Enough" Is Killing Nepali Tech Companies</h4>
-    <div class="article-meta">
-      <span>May 2025</span><span>5 min read</span><span>By Shivam Pajiyar</span>
+<section class="section articles-section">
+  <div class="article-full" id="post-1" data-reveal>
+    <div class="article-header">
+      <span class="cat">Standards</span>
+      <h2>WHY "GOOD ENOUGH" IS KILLING NEPALI TECH COMPANIES</h2>
+      <div class="article-byline"><span>Shivam Pajiyar</span><span>May 2025</span><span>5 min read</span></div>
     </div>
-    <p>There's a phrase you hear a lot in Nepali tech circles: "it works, doesn't it?" And it does work. The website loads. The app doesn't crash immediately. The client is happy — at least for now.</p>
-    <p>But there's a problem. When that same client wants to expand internationally, or when a bigger company wants to acquire them, or when they try to scale to 10x users — "it works" stops being enough. And by then, the technical debt has compounded into something that's very expensive to fix.</p>
-    <h5>What international clients actually check</h5>
-    <p>When a company in the US, UK, or Europe evaluates a software vendor, they don't just look at the demo. They look at code quality and documentation. They look at security practices — do you have a vulnerability disclosure process? They look at deployment pipelines — is your CI/CD automated or are you FTP-ing files manually? They look at test coverage. They look at whether your API has proper versioning and documentation.</p>
-    <p>Most Nepali agencies fail these checks — not because they don't have talented engineers, but because nobody told them these checks exist. The local market doesn't demand them, so they never built the habit.</p>
-    <h5>The cost of catching up</h5>
-    <p>Retrofitting proper standards onto a codebase that was built without them is painful and expensive. It's like trying to add proper plumbing to a house after it was built. Possible — but you're basically tearing the walls open.</p>
-    <p>The solution is simple but hard: build to international standards from day one, even when the client doesn't ask for it. Because the clients who will pay good money don't ask — they assume. And if you're not meeting the assumption, you don't get the work.</p>
-    <p>That's what NTS is about. Not doing the minimum to satisfy a local client. Building things the way the best teams in the world would build them — because that's the only standard worth holding yourself to.</p>
+    <div class="article-body">
+      <p>There's a phrase you hear constantly in Nepali tech: "it works, doesn't it?" The site loads. The app doesn't crash immediately. The client signed off. Job done.</p>
+      <p>And in the local market, that often is job done. The client doesn't know what they don't know. They've never seen what a properly-built system looks like, so they have no reference point to evaluate what you've delivered. "It works" passes the bar.</p>
+      <p>The problem arrives the moment that company tries to go international. Or raise investment. Or scale past the first few hundred users. Or hire a second developer who has to work with the codebase.</p>
+
+      <h3>What international clients actually check</h3>
+      <p>When a company in the US, UK, or Europe evaluates a software vendor, they do technical due diligence. This is not a courtesy review — it's a structured evaluation. And most Nepali agencies fail it without even getting the chance to present their portfolio.</p>
+      <ul>
+        <li><strong>Source code review.</strong> Is there a testing suite? What's the coverage? Is the code structured in a way that another developer can maintain?</li>
+        <li><strong>Deployment process.</strong> Is there a CI/CD pipeline? Is deployment documented and automated? Or is someone FTPing files to a shared host?</li>
+        <li><strong>Security practices.</strong> How are secrets managed? What's the authentication implementation? Has any security testing been done?</li>
+        <li><strong>Documentation.</strong> Is there a README that actually explains how to run the project? Is the API documented? Are architectural decisions recorded?</li>
+        <li><strong>Infrastructure.</strong> Is the system designed to scale? Is there monitoring and alerting? Is there a disaster recovery plan?</li>
+      </ul>
+      <p>Most Nepali agencies fail several of these checks — not because they don't have talented developers, but because the local market has never demanded these things, so they've never built the habit of delivering them.</p>
+
+      <h3>The cost of catching up</h3>
+      <p>Here's the thing about technical debt: it compounds. A codebase built without tests is twice as hard to add tests to later. Infrastructure configured manually is three times as hard to migrate to IaC. Code written without documentation becomes unmaintainable over months, not years.</p>
+      <p>Retrofitting international standards onto a system built without them is expensive. It's like trying to replumb a house that's already been finished — possible, but you're opening walls that were supposed to be closed.</p>
+
+      <blockquote>"The local market doesn't demand these things. So most companies never build the habit. And by the time they want to compete internationally, the gap is too wide to close quickly."</blockquote>
+
+      <p>The solution is straightforward in principle: build to international standards from day one, even when the client doesn't ask for it. Build properly because you know it's right — not because someone forced you to.</p>
+      <p>That's the only sustainable approach. And it's what NTS was founded to demonstrate is possible from Nepal.</p>
+    </div>
   </div>
 
-  <div id="post-2" class="article-preview fade-up" style="margin-top:20px;">
-    <span class="post-cat blue">AI & Tech</span>
-    <h4>AI Isn't Coming For Your Job — But Someone Using AI Is</h4>
-    <div class="article-meta">
-      <span>April 2025</span><span>6 min read</span><span>By Shivam Pajiyar</span>
+  <div class="article-full" id="post-2" data-reveal>
+    <div class="article-header">
+      <span class="cat">AI</span>
+      <h2>AI ISN'T COMING FOR YOUR JOB — BUT SOMEONE USING AI IS</h2>
+      <div class="article-byline"><span>Shivam Pajiyar</span><span>April 2025</span><span>6 min read</span></div>
     </div>
-    <p>Every few months the discourse cycles back to the same question: will AI replace developers? The answer, for now, is no. But that's the wrong question.</p>
-    <p>The right question is: are you using AI to work better and faster, or are you ignoring it because it feels like cheating? Because if it's the latter, you're already falling behind — not to the AI, but to the person sitting next to you who figured out how to use it well.</p>
-    <h5>How NTS uses AI</h5>
-    <p>At NTS, we use AI tools across our entire workflow — for code review, documentation drafting, security research, and client communication. We don't use it to write code we don't understand. We use it to eliminate the repetitive parts of the job so we can spend more time on the parts that actually require human judgment.</p>
-    <p>The key distinction is this: AI is good at pattern matching. Humans are good at judgment, context, and knowing when the pattern doesn't apply. The best developers right now are the ones who have learned to combine both — using AI for what it's good at, and engaging their own brain for the rest.</p>
-    <h5>What this means for Nepal's tech industry</h5>
-    <p>Nepal has a real opportunity here. The barrier to accessing world-class AI tooling is low — it costs the same for a developer in Kathmandu as it does for one in San Francisco. The companies and individuals who learn to leverage these tools effectively right now will be significantly more productive than those who don't.</p>
-    <p>That's not a threat. That's an advantage waiting to be taken.</p>
+    <div class="article-body">
+      <p>Every few months, the same conversation cycles around: will AI replace developers? The short answer is no — not in the near term, and probably not the way most people imagine it. The longer answer is more important.</p>
+      <p>The question isn't whether AI will replace you. The question is whether someone using AI tools effectively will make you redundant by being substantially more productive. And the answer to that is increasingly yes.</p>
+
+      <h3>How NTS uses AI</h3>
+      <p>We use AI tools across almost everything we do — code review assistance, documentation drafting, security research, client communication, and testing. We don't use them to write code we don't understand. We use them to eliminate the repetitive, low-judgment parts of the job so we can spend more time on the parts that actually require a human brain.</p>
+      <p>The practical effect is significant. Documentation that used to take half a day now takes an hour — and is better, because the AI catches gaps that a tired developer writing at 5pm would miss. Code reviews that used to happen once a week happen on every commit. Test case generation for edge cases that no one thought to write is now automated.</p>
+
+      <h3>What AI is not good at</h3>
+      <p>AI is excellent at pattern matching. It's not good at judgment. It doesn't know whether the business logic in the code it's reviewing is correct — it just knows whether the code is consistent with patterns it's seen. It doesn't know whether an architectural decision is the right one for your specific constraints — it just knows what's commonly done.</p>
+      <p>The developers who will be displaced by AI are the ones whose value is primarily pattern-matching: writing boilerplate, implementing well-understood patterns, translating specifications into code without much original thinking. That's a real category of work, and AI is getting better at it.</p>
+
+      <h3>What Nepal's tech industry should do</h3>
+      <p>The access barrier to AI tooling is near-zero. A developer in Kathmandu has the same access to Claude, GitHub Copilot, and Cursor as a developer in San Francisco. The tools are the same. The question is whether you learn to use them well.</p>
+      <p>The developers and companies in Nepal who figure out how to integrate AI into their workflow effectively — without outsourcing judgment to it — will have a genuine competitive advantage in the next three to five years. Not because AI is magic, but because the productivity delta between people who use it well and people who ignore it is large and growing.</p>
+      <p>At NTS, we've built AI usage into how we work. Not as a policy, but because it makes us better at what we do. We'd recommend the same approach to every developer and every tech company in Nepal.</p>
+    </div>
   </div>
 
-  <div id="post-3" class="article-preview fade-up" style="margin-top:20px;">
-    <span class="post-cat red">Security</span>
-    <h4>Most Nepali Startups Have Zero Security. Here's The Minimum You Need.</h4>
-    <div class="article-meta">
-      <span>March 2025</span><span>7 min read</span><span>By Shivam Pajiyar</span>
+  <div class="article-full" id="post-3" data-reveal>
+    <div class="article-header">
+      <span class="cat">Security</span>
+      <h2>MOST NEPALI STARTUPS HAVE ZERO SECURITY. HERE'S THE MINIMUM.</h2>
+      <div class="article-byline"><span>Shivam Pajiyar</span><span>March 2025</span><span>7 min read</span></div>
     </div>
-    <p>I've looked at a lot of Nepali startup codebases. The pattern is consistent: great business idea, decent execution, and essentially no security. Hardcoded API keys in GitHub repos. No HTTPS on admin panels. Passwords stored in plaintext or with MD5. No logging. No incident response plan.</p>
-    <p>This isn't a criticism — it's a gap nobody taught them to fill. So here's the minimum every startup should have, regardless of size.</p>
-    <h5>The non-negotiables</h5>
-    <p><strong>1. HTTPS everywhere.</strong> Every page, every API endpoint, every admin panel. Not optional in 2025. Get a free Let's Encrypt certificate if cost is the concern.</p>
-    <p><strong>2. Secrets out of code.</strong> No API keys, database passwords, or tokens in your codebase. Use environment variables. Rotate any secrets that have been committed — assume they're compromised.</p>
-    <p><strong>3. Proper password hashing.</strong> bcrypt or Argon2 for user passwords. If you're storing anything else, you have a problem.</p>
-    <p><strong>4. Input validation.</strong> Never trust user input. Validate and sanitize everything before it touches your database. SQL injection is still the most common attack vector.</p>
-    <p><strong>5. Dependency auditing.</strong> Run npm audit or pip check regularly. Third-party libraries are your attack surface too.</p>
-    <p><strong>6. Logging.</strong> Log authentication events, admin actions, and errors. You can't respond to an incident you don't know about.</p>
-    <p>This list isn't exhaustive — it's the floor. If you're not doing all of these, start today. If you need help, that's what NTS is here for.</p>
+    <div class="article-body">
+      <p>I've looked at a lot of Nepali startup codebases and infrastructure. The pattern is consistent: strong product idea, reasonable execution, and essentially no security. Not "imperfect security." Zero security.</p>
+      <p>API keys committed to public GitHub repositories. Admin panels with no authentication. User passwords hashed with MD5 or — in several cases — stored in plaintext. No HTTPS on anything. No logging. No rate limiting. No input validation worth mentioning.</p>
+      <p>This isn't a criticism of the developers. It's a gap in what the market demands and what training programs teach. So here's the minimum every startup should have before they ship to real users.</p>
+
+      <h3>The six non-negotiables</h3>
+      <ul>
+        <li><strong>HTTPS on everything.</strong> Every page, every API endpoint, every admin panel. Not optional in 2025. Get a Let's Encrypt certificate if cost is a concern — it's free and takes 20 minutes to set up.</li>
+        <li><strong>Secrets out of the codebase.</strong> No API keys, database passwords, or tokens in your repository. Use environment variables managed through a secrets manager. If you've ever committed a secret to a repository — even a private one — rotate it immediately and assume it's compromised.</li>
+        <li><strong>Proper password hashing.</strong> bcrypt or Argon2 for anything resembling a password. If you're storing MD5 hashes, you have a breach waiting to happen. If you're storing plaintext, you've already failed your users.</li>
+        <li><strong>Input validation and parameterised queries.</strong> Never trust user input. Validate and sanitise everything before it touches your database. SQL injection was the most common attack vector in 2024. In 2025, it still is.</li>
+        <li><strong>Dependency auditing.</strong> Run npm audit, pip check, or the equivalent for your stack at least once a month. Your third-party libraries are your attack surface too. A vulnerability in a library you haven't updated in two years is a vulnerability in your product.</li>
+        <li><strong>Authentication logging.</strong> Log every login attempt — success and failure. Log admin actions. Log anything that changes user data. If you get breached and have no logs, your incident response will be guesswork.</li>
+      </ul>
+
+      <h3>What comes after the minimum</h3>
+      <p>The list above is not a security programme. It's the floor — the minimum below which you are actively failing your users. Once you have it, you can start thinking about rate limiting, MFA, security headers, CSP, CORS configuration, and eventually penetration testing.</p>
+      <p>But start with the six. Today. Before you ship another feature.</p>
+      <p>If you need help implementing any of this, or you want a security review of what you've already built — that's one of the things NTS does. The contact form is on the website.</p>
+    </div>
+  </div>
+
+  <div class="article-full" id="post-4" data-reveal>
+    <div class="article-header">
+      <span class="cat">Standards</span>
+      <h2>WHAT "INTERNATIONAL STANDARDS" ACTUALLY MEANS IN SOFTWARE</h2>
+      <div class="article-byline"><span>Shivam Pajiyar</span><span>February 2025</span><span>6 min read</span></div>
+    </div>
+    <div class="article-body">
+      <p>"International standards" gets used a lot — by companies who want to sound credible, by developers who want to justify their choices, and by agencies pitching for work they may or may not be able to deliver. So what does it actually mean?</p>
+      <p>It's not about the framework you use. React vs. Vue vs. Django vs. Laravel — none of that is what international standards means. Tools are interchangeable. Standards are about how you work, not what you work with.</p>
+
+      <h3>It's about process</h3>
+      <p><strong>Version control used properly.</strong> Not just "we use Git" — that's not a standard, that's a baseline. Meaningful commit messages. Feature branches. Pull requests reviewed before merge. A history that tells the story of how the codebase changed and why.</p>
+      <p><strong>Testing as part of development, not as a final check.</strong> Unit tests written alongside code, not after the fact if there's time. Integration tests that catch the gaps between components. A CI pipeline that runs the tests on every push and fails loudly when something breaks.</p>
+      <p><strong>Documentation that a new developer can use.</strong> A README that explains how to get the project running locally in under 30 minutes. An API that documents its endpoints, parameters, and responses. Architecture decisions recorded so future developers understand why the system is shaped the way it is.</p>
+
+      <h3>It's about culture</h3>
+      <p>The hardest part of international standards isn't technical — it's cultural. It requires treating quality as non-negotiable rather than negotiable under deadline pressure. It requires saying "we can't ship this yet" when the code isn't ready, even when the client is pushing. It requires caring about how the codebase looks to the next developer, not just whether it works for the current one.</p>
+      <p>That's the culture NTS is trying to build in Nepal's tech industry — one project at a time. Not by being preachy about it, but by demonstrating that it's possible and that it produces better outcomes.</p>
+    </div>
   </div>
 </section>
 
 <div id="footer-ph"></div>
-<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

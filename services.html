@@ -4,71 +4,119 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — Nepal Technology Service</title>
-  <meta name="description" content="Full-stack IT services from Nepal — web development, mobile apps, cybersecurity, cloud, DevOps, UI/UX, digital marketing and more." />
+  <meta name="description" content="Full-stack IT services from Nepal — web development, mobile apps, cybersecurity, cloud, DevOps, UI/UX and more. International standards, every time." />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 80px; }
-    .services-intro p { color: var(--light); line-height: 1.85; margin-bottom: 14px; font-size: 1rem; }
-
-    .service-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .service-item {
-      background: var(--surface); padding: 40px 40px;
-      display: grid; grid-template-columns: 80px 1fr auto;
-      gap: 32px; align-items: start; cursor: pointer;
-      transition: background 0.3s; position: relative;
+    /* SERVICES LIST */
+    .svc-list {
+      margin-top: 64px;
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
     }
-    .service-item::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    .svc-full {
+      display: grid; grid-template-columns: 100px 1fr auto;
+      gap: 36px; padding: 40px 36px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s; align-items: start;
+      position: relative;
+    }
+    .svc-full::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
       background: linear-gradient(180deg, var(--red), var(--blue));
       transform: scaleY(0); transform-origin: top; transition: transform 0.4s;
     }
-    .service-item:hover { background: var(--surface2); }
-    .service-item:hover::before { transform: scaleY(1); }
-    .service-item-num {
-      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
-      color: rgba(255,255,255,0.06); line-height: 1; padding-top: 4px;
+    .svc-full:hover { background: var(--surface); }
+    .svc-full:hover::before { transform: scaleY(1); }
+    .svc-full:last-child { border-bottom: none; }
+    .svc-full-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem; color: rgba(255,255,255,0.05);
+      letter-spacing: 0.06em; line-height: 1; padding-top: 4px;
     }
-    .service-item-body h3 {
-      font-family: var(--font-head); font-size: 1.25rem; font-weight: 700;
-      margin-bottom: 10px; line-height: 1.2;
+    .svc-full-body h3 {
+      font-size: 1.1rem; font-weight: 500; margin-bottom: 10px;
     }
-    .service-item-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; max-width: 560px; }
-    .service-item-body .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .service-item-body .service-tags span {
-      background: var(--surface2); border: 1px solid var(--border);
-      font-size: 0.75rem; color: var(--light); padding: 4px 12px; border-radius: 4px;
+    .svc-full-body p { font-size: 0.88rem; color: var(--light); line-height: 1.8; max-width: 600px; }
+    .svc-full-body p + p { margin-top: 10px; }
+    .svc-full-tags {
+      display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px;
     }
-    .service-item-arrow {
-      font-size: 1.4rem; color: var(--red); margin-top: 4px;
-      transition: transform 0.2s;
+    .svc-full-tags span {
+      font-size: 0.72rem; color: var(--light);
+      border: 1px solid var(--border); padding: 4px 11px;
+      border-radius: 3px; letter-spacing: 0.02em;
     }
-    .service-item:hover .service-item-arrow { transform: translateX(6px) translateY(-6px); }
+    .svc-full-arrow {
+      font-size: 1.2rem; color: var(--muted);
+      padding-top: 6px; transition: color 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .svc-full:hover .svc-full-arrow { color: var(--red); transform: translate(4px,-4px); }
 
-    /* WHY NTS */
-    .why-section { background: var(--surface); }
-    .why-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 56px;
+    /* WHY SECTION */
+    .why-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 20px; margin-top: 56px;
     }
-    .why-card {
+    .why-item {
       background: var(--black); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 36px;
+      border-radius: 4px; padding: 32px;
       display: flex; gap: 20px; align-items: flex-start;
-      transition: border-color 0.3s;
+      transition: border-color 0.25s;
     }
-    .why-card:hover { border-color: rgba(220,20,60,0.3); }
-    .why-icon {
-      width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
-      background: var(--red-muted); border: 1px solid rgba(220,20,60,0.2);
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    .why-item:hover { border-color: rgba(220,20,60,0.25); }
+    .why-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem; color: var(--red); letter-spacing: 0.08em;
+      flex-shrink: 0; line-height: 1; padding-top: 3px;
     }
-    .why-card h4 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
-    .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .why-item h4 { font-size: 0.92rem; font-weight: 500; margin-bottom: 8px; }
+    .why-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
 
-    @media (max-width: 900px) {
-      .services-intro { grid-template-columns: 1fr; gap: 32px; }
-      .service-item { grid-template-columns: 1fr; gap: 12px; }
-      .service-item-num { font-size: 1.2rem; }
-      .why-grid { grid-template-columns: 1fr; }
+    /* DELIVERY */
+    .delivery-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 72px 5vw;
+    }
+    .delivery-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 0; border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden; margin-top: 48px;
+    }
+    .delivery-step {
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .delivery-step:last-child { border-right: none; }
+    .delivery-step::after {
+      content: '→';
+      position: absolute; right: -10px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--border); font-size: 1rem; z-index: 1;
+    }
+    .delivery-step:last-child::after { display: none; }
+    .delivery-step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem; color: rgba(255,255,255,0.06);
+      line-height: 1; margin-bottom: 12px; letter-spacing: 0.06em;
+    }
+    .delivery-step h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 8px; }
+    .delivery-step p { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+
+    @media (max-width: 960px) {
+      .svc-full { grid-template-columns: 1fr; gap: 10px; }
+      .svc-full-num { font-size: 1.2rem; color: var(--muted); }
+      .svc-full-arrow { display: none; }
+      .why-layout { grid-template-columns: 1fr; }
+      .delivery-grid { grid-template-columns: 1fr 1fr; }
+      .delivery-step::after { display: none; }
+      .delivery-step { border-bottom: 1px solid var(--border); }
+    }
+    @media (max-width: 600px) {
+      .delivery-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -77,184 +125,232 @@
 
 <div class="page-hero">
   <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Services</div>
-  <h1>Everything You<br>Need. Nothing<br>You <span style="color:var(--red)">Don't.</span></h1>
-  <p>A full IT company — not a freelancer with a business card. We cover the entire stack so you don't have to juggle ten vendors.</p>
+  <h1>EVERYTHING<br>YOU NEED.<br>NOTHING <span style="color:var(--red)">VAGUE.</span></h1>
+  <p>Eleven services. Each one delivered with the same attention to detail, the same documentation standards, and the same security baseline. Here's exactly what each one includes.</p>
 </div>
 
+<!-- SERVICES LIST -->
 <section class="section">
-  <div class="services-intro">
-    <div class="fade-up">
-      <div class="section-tag">Our Services</div>
-      <h2 class="section-title">11 Services.<br>One Standard.</h2>
-    </div>
-    <div class="fade-up" data-delay="0.1s">
-      <p>Every service we offer is delivered to the same standard — the one we'd want if we were the client. That means proper documentation, proper security, proper testing, and code that someone else can actually maintain.</p>
-      <p>Not because it sounds good on a website. Because that's what international standards actually require.</p>
-    </div>
-  </div>
+  <span class="label">Full Service List</span>
+  <h2 class="h2">WHAT WE BUILD,<br>AND HOW WE BUILD IT.</h2>
+  <div class="svc-list">
 
-  <div class="service-list">
-    <div class="service-item fade-up">
-      <div class="service-item-num">01</div>
-      <div class="service-item-body">
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">01</div>
+      <div class="svc-full-body">
         <h3>Web Development</h3>
-        <p>Custom websites and web applications built for performance, security and scale. We don't do templates — everything is purpose-built for your use case, whether that's a marketing site, a SaaS product, or a complex web platform.</p>
-        <div class="service-tags">
-          <span>React</span><span>Next.js</span><span>Node.js</span><span>Custom CMS</span><span>E-Commerce</span>
+        <p>Custom websites and web applications built from scratch — not themes, not page builders, not WordPress unless that's genuinely the right tool for the job. Every project includes responsive design, performance optimisation, SEO fundamentals, proper error handling, and deployment to a production environment that won't fall over.</p>
+        <p>We work with React, Next.js, Node.js, and TypeScript as our primary stack. For simpler projects, clean semantic HTML/CSS/JS. For complex platforms — full backend APIs, database design, auth systems, and cloud deployment.</p>
+        <div class="svc-full-tags">
+          <span>React</span><span>Next.js</span><span>Node.js</span><span>TypeScript</span>
+          <span>PostgreSQL</span><span>MongoDB</span><span>REST APIs</span><span>AWS</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">02</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">02</div>
+      <div class="svc-full-body">
         <h3>Mobile App Development</h3>
-        <p>Native and cross-platform apps for iOS and Android. Built with the same architecture discipline you'd find at top product companies — because your users deserve apps that actually work, not crash.</p>
-        <div class="service-tags">
+        <p>Native-quality mobile apps for iOS and Android. We use React Native for cross-platform projects where the use case warrants it, and Flutter where performance-critical rendering is required. We don't recommend cross-platform for everything — sometimes native is the right answer, and we'll tell you honestly.</p>
+        <p>Every app we ship goes through proper QA on physical devices, not just simulators. We handle App Store and Play Store submission, signing, and deployment.</p>
+        <div class="svc-full-tags">
           <span>React Native</span><span>Flutter</span><span>iOS</span><span>Android</span>
+          <span>App Store</span><span>Play Store</span><span>Push Notifications</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">03</div>
-      <div class="service-item-body">
-        <h3>UI/UX Design</h3>
-        <p>Design that earns its place — every pixel has a reason. We do user research, wireframing, prototyping and visual design. Not just what looks good, but what actually converts and retains users.</p>
-        <div class="service-tags">
-          <span>Figma</span><span>User Research</span><span>Prototyping</span><span>Design Systems</span>
-        </div>
-      </div>
-      <div class="service-item-arrow">↗</div>
-    </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">04</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">03</div>
+      <div class="svc-full-body">
         <h3>Cybersecurity</h3>
-        <p>Security consulting, audits, penetration testing and incident response — delivered by a GCIH-certified team trained to SANS standards. We don't just find the holes. We help you fix them and prevent the next ones.</p>
-        <div class="service-tags">
-          <span>Penetration Testing</span><span>Security Audits</span><span>Incident Response</span><span>IAM Hardening</span>
+        <p>Security consulting and testing delivered to SANS standards — the same standards that underpin the GCIH and GSEC certifications held by our founder. This includes penetration testing (web, API, network), security code review, IAM hardening, vulnerability disclosure, and incident response planning.</p>
+        <p>We write security reports that are actually readable — clear findings, clear severity ratings, clear remediation steps. Not 80-page PDFs full of automated scanner output that no one acts on.</p>
+        <div class="svc-full-tags">
+          <span>Penetration Testing</span><span>Security Audits</span><span>IAM Hardening</span>
+          <span>Incident Response</span><span>Vulnerability Disclosure</span><span>Security Reports</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">05</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">04</div>
+      <div class="svc-full-body">
         <h3>Cloud Services</h3>
-        <p>Cloud architecture, migration and management on AWS. We design for reliability and cost efficiency — not just because it's trendy, but because done right, cloud infrastructure is a competitive advantage.</p>
-        <div class="service-tags">
-          <span>AWS</span><span>Cloud Architecture</span><span>Cost Optimization</span><span>Migration</span>
+        <p>AWS architecture, cloud migration, and ongoing cloud management. We design for the right balance of reliability, performance, and cost — not just ticking the cloud checkbox. Services include EC2, Lambda, S3, CloudFront, RDS, API Gateway, and more, depending on your actual requirements.</p>
+        <p>We document everything. Every architecture decision comes with a rationale. You'll understand what you're running and why.</p>
+        <div class="svc-full-tags">
+          <span>AWS</span><span>Lambda</span><span>S3 / CloudFront</span><span>EC2</span>
+          <span>RDS</span><span>API Gateway</span><span>Cloud Architecture</span><span>Cost Optimisation</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">06</div>
-      <div class="service-item-body">
-        <h3>DevOps</h3>
-        <p>CI/CD pipelines, infrastructure as code, containerization and automated deployments. We make shipping software a boring, reliable process — exactly what it should be.</p>
-        <div class="service-tags">
-          <span>Terraform</span><span>Docker</span><span>GitHub Actions</span><span>CI/CD</span>
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">05</div>
+      <div class="svc-full-body">
+        <h3>DevOps & Infrastructure as Code</h3>
+        <p>CI/CD pipelines, containerisation, and infrastructure managed as code using Terraform. We make shipping software a reliable, repeatable, boring process — because boring deployments are good deployments. Automated testing gates, environment-parity between staging and production, and rollback strategies are included as standard.</p>
+        <div class="svc-full-tags">
+          <span>Terraform</span><span>Docker</span><span>GitHub Actions</span>
+          <span>CI/CD</span><span>Infrastructure as Code</span><span>Monitoring</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">07</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">06</div>
+      <div class="svc-full-body">
+        <h3>UI/UX Design</h3>
+        <p>User research, information architecture, wireframing, interactive prototyping, and visual design — in Figma, with a proper design system handoff. We don't start in Figma. We start by understanding who the users are and what they actually need to do. The visual design follows from that, not the other way around.</p>
+        <p>Every design deliverable is production-ready: component specifications, spacing, typography scale, colour system, and interaction states documented.</p>
+        <div class="svc-full-tags">
+          <span>Figma</span><span>User Research</span><span>Wireframing</span>
+          <span>Prototyping</span><span>Design Systems</span><span>Handoff</span>
+        </div>
+      </div>
+      <div class="svc-full-arrow">↗</div>
+    </div>
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">07</div>
+      <div class="svc-full-body">
         <h3>API Development & Integration</h3>
-        <p>REST and GraphQL APIs built for reliability and developer experience. Third-party integrations that actually work — and documentation that makes sense to humans.</p>
-        <div class="service-tags">
-          <span>REST</span><span>GraphQL</span><span>Third-Party APIs</span><span>Documentation</span>
+        <p>RESTful and GraphQL APIs built with versioning, rate limiting, proper error responses, and OpenAPI/Swagger documentation from day one. Third-party API integrations — payment gateways, communication platforms, data providers — handled with proper error handling and webhook management.</p>
+        <div class="svc-full-tags">
+          <span>REST</span><span>GraphQL</span><span>OpenAPI / Swagger</span>
+          <span>Webhooks</span><span>OAuth</span><span>Third-Party Integrations</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">08</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">08</div>
+      <div class="svc-full-body">
         <h3>Software Development</h3>
-        <p>Bespoke software built to solve specific business problems. We take the time to understand what you actually need — not just what you said you want — and we build it properly.</p>
-        <div class="service-tags">
-          <span>Custom Software</span><span>SaaS Products</span><span>Automation Tools</span>
+        <p>Bespoke software built to solve specific business problems — not repackaged off-the-shelf tools with your logo on them. We take the time to understand what you actually need before writing a line of code. Scope is agreed, documented, and managed properly. No scope creep surprises.</p>
+        <div class="svc-full-tags">
+          <span>Custom Software</span><span>SaaS Products</span>
+          <span>Automation Tools</span><span>Internal Tools</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">09</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">09</div>
+      <div class="svc-full-body">
         <h3>Quality Assurance & Testing</h3>
-        <p>Manual and automated testing across web, mobile and API layers. Because shipping fast doesn't mean skipping QA — it means building QA into the process from the start.</p>
-        <div class="service-tags">
-          <span>Automated Testing</span><span>Manual QA</span><span>Performance Testing</span>
+        <p>Manual and automated testing across all layers — unit, integration, end-to-end. We set up testing infrastructure using Jest, Playwright, and Cypress, and we write tests for the code we produce. QA isn't a final step at NTS — it's part of the development process from sprint one.</p>
+        <div class="svc-full-tags">
+          <span>Jest</span><span>Playwright</span><span>Cypress</span>
+          <span>Unit Testing</span><span>E2E Testing</span><span>Performance Testing</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">10</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">10</div>
+      <div class="svc-full-body">
         <h3>Digital Marketing</h3>
-        <p>SEO, social media strategy and digital campaigns for tech companies that actually need to grow. We understand tech — which means we can market it better than a generic agency ever could.</p>
-        <div class="service-tags">
-          <span>SEO</span><span>Social Media</span><span>Content Strategy</span><span>Analytics</span>
+        <p>SEO, content strategy, and paid campaigns for businesses that need to grow online. We understand technology — which means we can market tech products significantly better than a generic marketing agency. Technical SEO, developer-audience content, and campaigns that speak to people who know what they're buying.</p>
+        <div class="svc-full-tags">
+          <span>Technical SEO</span><span>Content Strategy</span>
+          <span>Google Ads</span><span>Analytics</span><span>Social Media</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
-    <div class="service-item fade-up">
-      <div class="service-item-num">11</div>
-      <div class="service-item-body">
+
+    <div class="svc-full" data-reveal>
+      <div class="svc-full-num">11</div>
+      <div class="svc-full-body">
         <h3>IT Consulting</h3>
-        <p>Strategic tech guidance for businesses that need to modernize, scale, or just figure out what they should be building. No jargon, no upselling — just honest advice from people who've built real systems.</p>
-        <div class="service-tags">
-          <span>Tech Strategy</span><span>Architecture Review</span><span>Vendor Selection</span>
+        <p>Strategic technology advice for businesses that need to modernise, scale, or choose between technical options. We give honest recommendations — including when the answer is "you don't need to build that." No vendor kickbacks, no upselling services you don't need.</p>
+        <div class="svc-full-tags">
+          <span>Tech Strategy</span><span>Architecture Review</span>
+          <span>Vendor Selection</span><span>Modernisation Planning</span>
         </div>
       </div>
-      <div class="service-item-arrow">↗</div>
+      <div class="svc-full-arrow">↗</div>
     </div>
+
   </div>
 </section>
 
 <!-- WHY NTS -->
-<section class="section why-section">
-  <div class="section-tag">Why NTS</div>
-  <h2 class="section-title">What Makes Us<br>Different</h2>
-  <div class="why-grid">
-    <div class="why-card fade-up">
-      <div class="why-icon">🌐</div>
+<section class="section section-alt">
+  <span class="label">Why NTS</span>
+  <h2 class="h2">WHAT MAKES<br>THIS DIFFERENT.</h2>
+  <div class="why-layout">
+    <div class="why-item" data-reveal>
+      <div class="why-num">01</div>
       <div>
-        <h4>International Standards, Local Presence</h4>
-        <p>We hold ourselves to the same bar as the best tech companies in the world — while being on the ground in Nepal, understanding the market from the inside.</p>
+        <h4>International Standards, Not Local Benchmarks</h4>
+        <p>We don't compare ourselves to other Nepali IT companies. We compare ourselves to the engineering culture at companies like Stripe, Vercel, and Linear — and we build to that bar.</p>
       </div>
     </div>
-    <div class="why-card fade-up" data-delay="0.08s">
-      <div class="why-icon">🔐</div>
+    <div class="why-item" data-reveal>
+      <div class="why-num">02</div>
       <div>
-        <h4>Security-First by Default</h4>
-        <p>Security isn't a service tier or an add-on at NTS — it's how we build everything. Every project comes with security baked in, not bolted on.</p>
+        <h4>Security Built In, Not Bolted On</h4>
+        <p>Security isn't an add-on service tier at NTS. Every system we build — web, mobile, API, or cloud — has security designed in from the first architecture conversation.</p>
       </div>
     </div>
-    <div class="why-card fade-up" data-delay="0.16s">
-      <div class="why-icon">⚡</div>
+    <div class="why-item" data-reveal>
+      <div class="why-num">03</div>
       <div>
-        <h4>GenZ Speed</h4>
-        <p>We grew up on the internet. We move fast, we use the latest tools, and we don't have the legacy baggage that slows most agencies down.</p>
+        <h4>You Own Everything</h4>
+        <p>Full source code ownership. All credentials go into your accounts. Proper documentation so any other team can pick it up. We deliberately build in a way that doesn't lock you to us.</p>
       </div>
     </div>
-    <div class="why-card fade-up" data-delay="0.24s">
-      <div class="why-icon">🎯</div>
+    <div class="why-item" data-reveal>
+      <div class="why-num">04</div>
       <div>
-        <h4>Full-Stack Accountability</h4>
-        <p>One team. One point of contact. No finger-pointing between a design agency and a dev agency. We own the whole product — and the results.</p>
+        <h4>One Team, Full Accountability</h4>
+        <p>No subcontracting, no finger-pointing between a designer and a developer. One team owns the whole product — design, build, security, deployment — and one team is accountable for the outcome.</p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- DELIVERY PROCESS -->
+<div class="delivery-strip">
+  <span class="label">How It Works</span>
+  <h2 class="h2">FROM FIRST CALL<br>TO PRODUCTION.</h2>
+  <div class="delivery-grid">
+    <div class="delivery-step" data-reveal>
+      <div class="delivery-step-num">01</div>
+      <h4>Discovery Call</h4>
+      <p>A direct conversation about what you need. No forms, no NDAs before we've even spoken. We find out what you're building, what problem it solves, and whether we're the right team.</p>
+    </div>
+    <div class="delivery-step" data-reveal>
+      <div class="delivery-step-num">02</div>
+      <h4>Scoping & Proposal</h4>
+      <p>We document the scope clearly — what's included, what's not, what the deliverables are, and what the timeline looks like. You review and agree before anything starts.</p>
+    </div>
+    <div class="delivery-step" data-reveal>
+      <div class="delivery-step-num">03</div>
+      <h4>Build & Iterate</h4>
+      <p>We build in sprints with regular check-ins. You see progress frequently, not at the end. Issues get caught early. Scope changes are handled transparently.</p>
+    </div>
+    <div class="delivery-step" data-reveal>
+      <div class="delivery-step-num">04</div>
+      <h4>Handover & Support</h4>
+      <p>A proper handover — documentation, credentials, walkthrough. We don't disappear after launch. Post-launch support is available and scoped clearly from the start.</p>
+    </div>
+  </div>
+</div>
+
 <div id="footer-ph"></div>
-<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

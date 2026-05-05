@@ -4,150 +4,212 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Nepal Technology Service</title>
-  <meta name="description" content="The story behind Nepal Technology Service — a GenZ tech company from Lalitpur bridging Nepal to the western tech world." />
+  <meta name="description" content="The story behind Nepal Technology Service — a GenZ tech company from Lalitpur bridging Nepal to international standards." />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .about-story {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    /* STORY */
+    .story-layout {
+      display: grid; grid-template-columns: 380px 1fr;
+      gap: 72px; align-items: start;
     }
-    .about-story-left { position: sticky; top: 100px; }
-    .founder-photo-wrap {
-      position: relative; display: inline-block; width: 100%;
+    .story-photo-col { position: sticky; top: calc(var(--nav-h) + 24px); }
+    .story-photo-wrap { position: relative; }
+    .story-photo {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover; object-position: center top;
+      border-radius: 4px; display: block;
     }
-    .founder-photo {
-      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top;
-      border-radius: 16px; display: block;
+    .story-photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(7,9,15,0.95));
+      padding: 48px 24px 20px;
+      border-radius: 0 0 4px 4px;
     }
-    .founder-photo-badge {
-      position: absolute; bottom: 24px; left: 24px; right: 24px;
-      background: rgba(7,8,13,0.85); backdrop-filter: blur(16px);
-      border: 1px solid var(--border); border-radius: 10px;
-      padding: 16px 20px;
-      display: flex; align-items: center; justify-content: space-between;
+    .story-photo-name { font-size: 1rem; font-weight: 500; }
+    .story-photo-role { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+    .story-photo-creds {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px;
     }
-    .founder-photo-badge-name { font-family: var(--font-head); font-weight: 700; font-size: 1rem; }
-    .founder-photo-badge-role { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
-    .founder-photo-badge-tag {
-      background: var(--red); color: #fff;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 5px 10px; border-radius: 4px;
+    .cred-tag {
+      font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
     }
-    .about-story-right { padding-top: 8px; }
-    .about-story-right .section-tag { margin-bottom: 12px; }
-    .about-story-right h1 {
-      font-family: var(--font-head);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 800; line-height: 1.06; letter-spacing: -0.04em;
+    .cred-gold { background: rgba(245,185,0,0.12); color: #F5B900; border: 1px solid rgba(245,185,0,0.2); }
+    .cred-blue { background: var(--blue-dim); color: #7AA3FF; border: 1px solid rgba(0,56,147,0.25); }
+
+    .story-text-col { padding-top: 4px; }
+    .story-text-col h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 0.96; letter-spacing: 0.04em;
       margin-bottom: 32px;
     }
-    .about-story-right p {
-      color: var(--light); font-size: 1rem; line-height: 1.9; margin-bottom: 20px;
-    }
-    .about-story-right p strong { color: var(--white); font-weight: 600; }
+    .story-text-col h1 em { font-style: normal; color: var(--red); }
+    .story-body p { font-size: 0.93rem; color: var(--light); line-height: 1.9; }
+    .story-body p + p { margin-top: 16px; }
+    .story-body p strong { color: var(--white); font-weight: 500; }
+
+    /* TIMELINE */
     .timeline {
-      margin-top: 48px; border-left: 2px solid var(--border);
-      padding-left: 32px; display: flex; flex-direction: column; gap: 32px;
+      margin-top: 48px;
+      border-left: 1px solid var(--border);
+      padding-left: 28px;
+      display: flex; flex-direction: column; gap: 28px;
     }
-    .timeline-item { position: relative; }
-    .timeline-item::before {
-      content: '';
-      position: absolute; left: -40px; top: 6px;
-      width: 10px; height: 10px; border-radius: 50%;
+    .tl-item { position: relative; }
+    .tl-item::before {
+      content: ''; position: absolute;
+      left: -33px; top: 7px;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--red); border: 2px solid var(--black);
     }
-    .timeline-date {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--red); margin-bottom: 6px;
+    .tl-date {
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 5px;
     }
-    .timeline-item h4 { font-family: var(--font-head); font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
-    .timeline-item p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+    .tl-item h4 { font-size: 0.93rem; font-weight: 500; margin-bottom: 5px; }
+    .tl-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
 
     /* VALUES */
-    .values-section { background: var(--surface); }
     .values-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: var(--border); border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden; margin-top: 56px;
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      margin-top: 56px;
     }
     .value-cell {
-      background: var(--surface); padding: 40px 32px;
-      transition: background 0.3s;
+      padding: 36px 30px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s;
     }
-    .value-cell:hover { background: var(--surface2); }
+    .value-cell:nth-child(3n) { border-right: none; }
+    .value-cell:hover { background: var(--red-dim); }
     .value-num {
-      font-family: var(--font-head); font-size: 3rem; font-weight: 800;
-      color: rgba(220,20,60,0.12); line-height: 1; margin-bottom: 16px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; color: rgba(255,255,255,0.04);
+      line-height: 1; margin-bottom: 14px;
     }
-    .value-cell h3 { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
-    .value-cell p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .value-cell h3 { font-size: 0.92rem; font-weight: 500; margin-bottom: 8px; }
+    .value-cell p { font-size: 0.8rem; color: var(--muted); line-height: 1.75; }
 
-    /* SKILLS */
-    .skills-section { }
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 56px;
+    /* CREDENTIALS */
+    .creds-section {}
+    .creds-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; margin-top: 56px;
     }
-    .skill-group h4 {
-      font-family: var(--font-head); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
-      margin-bottom: 16px;
+    .creds-col h3 {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px; padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
     }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag {
-      background: var(--surface2); border: 1px solid var(--border);
-      border-radius: 6px; padding: 7px 14px;
-      font-size: 0.82rem; color: var(--light); transition: all 0.2s;
+    .cred-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 16px 0; border-bottom: 1px solid var(--border2);
+      gap: 16px;
     }
-    .skill-tag:hover { border-color: var(--red); color: var(--white); }
+    .cred-row:last-child { border-bottom: none; }
+    .cred-name { font-size: 0.88rem; font-weight: 500; }
+    .cred-detail { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+    .cred-score {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; color: var(--red); letter-spacing: 0.06em;
+      white-space: nowrap; flex-shrink: 0;
+    }
 
-    @media (max-width: 900px) {
-      .about-story { grid-template-columns: 1fr; gap: 40px; }
-      .about-story-left { position: static; }
+    /* STACK */
+    .stack-section { background: var(--surface); }
+    .stack-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; margin-top: 56px;
+    }
+    .stack-group h4 {
+      font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tag {
+      font-size: 0.78rem; color: var(--light);
+      border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .stack-tag:hover { border-color: rgba(220,20,60,0.3); color: var(--white); }
+
+    @media (max-width: 960px) {
+      .story-layout { grid-template-columns: 1fr; gap: 40px; }
+      .story-photo-col { position: static; }
+      .story-photo { aspect-ratio: 4/3; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .creds-layout { grid-template-columns: 1fr; }
+      .stack-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
       .values-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
+      .value-cell:nth-child(3n) { border-right: none; }
+      .value-cell { border-right: none; }
+      .stack-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 <div id="nav-ph"></div>
 
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> About</div>
+  <h1>BUILT FROM<br>FRUSTRATION.<br>DRIVEN BY <span style="color:var(--red)">PRIDE.</span></h1>
+  <p>A GenZ tech company from Lalitpur, Nepal — not interested in being the best IT company in Nepal. Interested in being a great tech company that happens to be from Nepal.</p>
+</div>
+
 <!-- STORY -->
-<section class="section" style="padding-top:140px;">
-  <div class="about-story">
-    <div class="about-story-left fade-up">
-      <div class="founder-photo-wrap">
-        <img src="images/shivam.jpg" alt="Shivam Pajiyar — CTO, Nepal Technology Service" class="founder-photo" />
-        <div class="founder-photo-badge">
-          <div>
-            <div class="founder-photo-badge-name">Shivam Pajiyar</div>
-            <div class="founder-photo-badge-role">CTO — Nepal Technology Service</div>
+<section class="section">
+  <div class="story-layout">
+    <div class="story-photo-col" data-reveal>
+      <div class="story-photo-wrap">
+        <img src="images/shivam.jpg" alt="Shivam Pajiyar, CTO & Founder of Nepal Technology Service" class="story-photo" />
+        <div class="story-photo-caption">
+          <div class="story-photo-name">Shivam Pajiyar</div>
+          <div class="story-photo-role">Founder & CTO — Nepal Technology Service</div>
+          <div class="story-photo-creds">
+            <span class="cred-tag cred-gold">GCIH</span>
+            <span class="cred-tag cred-gold">GSEC 97%</span>
+            <span class="cred-tag cred-blue">GIAC Advisory Board</span>
           </div>
-          <div class="founder-photo-badge-tag">Founder</div>
         </div>
       </div>
     </div>
-    <div class="about-story-right">
-      <div class="section-tag">Our Story</div>
-      <h1>Built from<br>Frustration.<br>Driven by <span style="color:var(--red)">Pride.</span></h1>
-      <p>Nepal has brilliant engineers. What it hasn't had — until now — is a tech company that holds itself to the same standard as the best firms in the world. <strong>That's the gap NTS exists to close.</strong></p>
-      <p>Founded in February 2025 by Shivam Pajiyar in Imadol, Lalitpur, Nepal Technology Service was built on a simple belief: geography shouldn't determine the quality of software your business gets.</p>
-      <p>The western tech world has spent decades developing best practices — in security, in DevOps, in design, in engineering culture. We've studied those standards deeply. <strong>Now we're bringing them home.</strong></p>
-      <p>We're young, we're GenZ, and we're unapologetically ambitious. We don't want to be the best IT company in Nepal. We want to be a company that just happens to be from Nepal and competes globally.</p>
+
+    <div class="story-text-col" data-reveal>
+      <span class="label">The Story</span>
+      <h1>THE GAP WAS<br>TOO <em>OBVIOUS</em><br>TO IGNORE.</h1>
+      <div class="story-body">
+        <p>Nepal has talented engineers. That's never been the problem. The problem is the environment — most developers here have never worked inside a team that does proper code reviews, runs automated test suites, maintains real documentation, or treats security as a design requirement rather than an afterthought.</p>
+        <p>The result is a market full of "it works, doesn't it?" software. Which is fine, until it isn't. Until the client scales, or gets breached, or tries to hand the codebase to a new team, or wants to raise investment from people who run technical due diligence.</p>
+        <p><strong>Nepal Technology Service was founded in February 2025</strong> to close that gap — to be the company that holds itself to international standards from day one, not because clients demand it, but because we know what properly-built software looks like and we won't ship anything less.</p>
+        <p>We're based in Imadol, Lalitpur. We're GenZ. We're two years in. We've already shipped real products to production. And we're nowhere near done.</p>
+      </div>
 
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-date">February 2025</div>
-          <h4>NTS Founded</h4>
-          <p>Nepal Technology Service is established in Imadol, Lalitpur with a clear mission — international standards, local roots.</p>
+        <div class="tl-item">
+          <div class="tl-date">February 2025</div>
+          <h4>Nepal Technology Service Founded</h4>
+          <p>Company established in Imadol, Lalitpur with a clear mission: international standards, Nepali roots. No shortcuts.</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">March 2025</div>
-          <h4>First Project — Migrease</h4>
-          <p>We build and ship Migrease — a full-stack web platform built on AWS, Next.js and Node.js to international deployment standards.</p>
+        <div class="tl-item">
+          <div class="tl-date">March 2025</div>
+          <h4>First Production Deployment — Migrease</h4>
+          <p>Migrease shipped to AWS production — full Terraform infrastructure, Lambda functions, GitHub Actions CI/CD, Next.js frontend, Node.js backend. Built right, from the start.</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-date">2025 — Ongoing</div>
-          <h4>Growing the Team & Services</h4>
-          <p>Expanding our service line, building more products, and laying the groundwork for our upcoming course platform.</p>
+        <div class="tl-item">
+          <div class="tl-date">2025 — Ongoing</div>
+          <h4>Building the Team & Expanding Services</h4>
+          <p>Growing our service offering, taking on new clients, and laying the groundwork for NTS Courses — a platform to teach SANS-standard security skills to developers in Nepal.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-date">Coming</div>
+          <h4>NTS Courses Launch</h4>
+          <p>Real-world cybersecurity courses taught by a practitioner. GCIH, GSEC, SEC504, SEC401 — the knowledge, explained without the textbook price tag.</p>
         </div>
       </div>
     </div>
@@ -155,98 +217,185 @@
 </section>
 
 <!-- VALUES -->
-<section class="section values-section">
-  <div class="section-tag">What We Stand For</div>
-  <h2 class="section-title">Our Values</h2>
-  <p class="section-sub">Not just words on a wall. These are the actual principles that shape every decision we make.</p>
+<section class="section section-alt">
+  <span class="label">What We Stand For</span>
+  <h2 class="h2">SIX VALUES.<br>NON-NEGOTIABLE.</h2>
+  <p class="body" style="margin-top:12px;max-width:520px;">These aren't marketing copy. They're the actual decisions we make every day when we choose how to build something.</p>
   <div class="values-grid">
-    <div class="value-cell fade-up">
+    <div class="value-cell" data-reveal>
       <div class="value-num">01</div>
       <h3>International Standards. Always.</h3>
-      <p>We don't benchmark ourselves against local competitors. We benchmark against the best in the world — then we try to beat them.</p>
+      <p>We don't benchmark against local competitors. We benchmark against the best teams in the world — then we try to build better than them.</p>
     </div>
-    <div class="value-cell fade-up" data-delay="0.08s">
+    <div class="value-cell" data-reveal>
       <div class="value-num">02</div>
       <h3>Ship Real Things.</h3>
-      <p>No endless planning. No over-engineering. We build, we ship, we iterate. Real products in the hands of real users — that's the goal.</p>
+      <p>No endless planning cycles. No over-engineering for problems that don't exist. Build, ship, iterate. Real products in real users' hands.</p>
     </div>
-    <div class="value-cell fade-up" data-delay="0.16s">
+    <div class="value-cell" data-reveal>
       <div class="value-num">03</div>
-      <h3>Security Isn't Optional.</h3>
-      <p>Every system we build is designed with security from day one. Not bolted on at the end. Not a checkbox. Built in.</p>
+      <h3>Security Is Not Optional.</h3>
+      <p>Every system we build is designed with security as a requirement from the first line of code. Not reviewed at the end. Not a feature tier. Built in.</p>
     </div>
-    <div class="value-cell fade-up" data-delay="0.24s">
+    <div class="value-cell" data-reveal>
       <div class="value-num">04</div>
-      <h3>AI as a Tool, Not a Crutch.</h3>
-      <p>We embrace AI to move faster and think better. But we never let it replace judgment, craft, or accountability.</p>
+      <h3>AI as a Multiplier, Not a Replacement.</h3>
+      <p>We use AI tools across our entire workflow. We use them to move faster and eliminate repetitive work — not to replace engineering judgment or accountability.</p>
     </div>
-    <div class="value-cell fade-up" data-delay="0.32s">
+    <div class="value-cell" data-reveal>
       <div class="value-num">05</div>
       <h3>Stay Current or Get Left Behind.</h3>
-      <p>Technology doesn't wait. Neither do we. Continuous learning isn't a nice-to-have — it's a core job requirement at NTS.</p>
+      <p>Technology moves. We move with it. Continuous learning is a core part of the job at NTS, not something that happens in spare time.</p>
     </div>
-    <div class="value-cell fade-up" data-delay="0.40s">
+    <div class="value-cell" data-reveal>
       <div class="value-num">06</div>
       <h3>Proudly From Nepal.</h3>
-      <p>We're not trying to hide where we're from. We're trying to make where we're from something to be proud of in tech.</p>
+      <p>We're not trying to hide where we're from or pretend to be a Western agency. We're trying to make Nepal something worth pointing to in tech.</p>
     </div>
   </div>
 </section>
 
-<!-- SKILLS / TECH STACK -->
-<section class="section skills-section">
-  <div class="section-tag">Technology</div>
-  <h2 class="section-title">What We Work With</h2>
-  <p class="section-sub">The tools and technologies we use to build world-class products.</p>
-  <div class="skills-grid">
-    <div class="skill-group fade-up">
+<!-- CREDENTIALS -->
+<section class="section creds-section">
+  <span class="label">Credentials</span>
+  <h2 class="h2">SECURITY<br>CERTIFICATIONS.</h2>
+  <p class="body" style="margin-top:12px;max-width:540px;">The founder, Shivam Pajiyar, holds active GIAC certifications and has completed multiple SANS courses — some of the most rigorous security training programs in the world.</p>
+  <div class="creds-layout">
+    <div class="creds-col" data-reveal>
+      <h3>GIAC Certifications</h3>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">GIAC Certified Incident Handler (GCIH)</div>
+          <div class="cred-detail">Active certification — incident response, forensics, hacker tools</div>
+        </div>
+        <div class="cred-score">ACTIVE</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">GIAC Security Essentials (GSEC)</div>
+          <div class="cred-detail">GIAC Advisory Board selected — top percentile performance</div>
+        </div>
+        <div class="cred-score">97%</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">GIAC Foundational Cybersecurity (GFACT)</div>
+          <div class="cred-detail">Foundational security knowledge and core concepts</div>
+        </div>
+        <div class="cred-score">83%</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">GIAC Advisory Board Member</div>
+          <div class="cred-detail">Selected for exceptional GSEC performance — advisory role in GIAC curriculum</div>
+        </div>
+        <div class="cred-score" style="color:var(--blue-mid)">BOARD</div>
+      </div>
+    </div>
+    <div class="creds-col" data-reveal>
+      <h3>SANS Courses Completed</h3>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">SEC504 — Hacker Tools, Techniques & Incident Handling</div>
+          <div class="cred-detail">Penetration testing, attack methodologies, incident response</div>
+        </div>
+        <div class="cred-score" style="color:var(--light);font-size:0.8rem;font-family:'DM Sans'">Complete</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">SEC401 — Security Essentials</div>
+          <div class="cred-detail">Core security knowledge — the foundation of the GSEC certification</div>
+        </div>
+        <div class="cred-score" style="color:var(--light);font-size:0.8rem;font-family:'DM Sans'">Complete</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">SEC402 — Effective Cyber Writing</div>
+          <div class="cred-detail">Security reporting, executive communication, risk writing</div>
+        </div>
+        <div class="cred-score" style="color:var(--light);font-size:0.8rem;font-family:'DM Sans'">Complete</div>
+      </div>
+      <div class="cred-row">
+        <div>
+          <div class="cred-name">SEC403 — Cybersecurity Presentation</div>
+          <div class="cred-detail">Presenting technical findings to non-technical audiences</div>
+        </div>
+        <div class="cred-score" style="color:var(--light);font-size:0.8rem;font-family:'DM Sans'">Complete</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section class="section stack-section">
+  <span class="label">Technology</span>
+  <h2 class="h2">WHAT WE<br>BUILD WITH.</h2>
+  <div class="stack-grid">
+    <div class="stack-group" data-reveal>
       <h4>Frontend</h4>
-      <div class="skill-tags">
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Tailwind CSS</span>
-        <span class="skill-tag">Vue.js</span>
-        <span class="skill-tag">HTML / CSS</span>
+      <div class="stack-tags">
+        <span class="stack-tag">React</span>
+        <span class="stack-tag">Next.js</span>
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">Tailwind CSS</span>
+        <span class="stack-tag">Vue.js</span>
+        <span class="stack-tag">HTML / CSS</span>
       </div>
     </div>
-    <div class="skill-group fade-up" data-delay="0.08s">
+    <div class="stack-group" data-reveal>
       <h4>Backend</h4>
-      <div class="skill-tags">
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">REST APIs</span>
-        <span class="skill-tag">GraphQL</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">MongoDB</span>
+      <div class="stack-tags">
+        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">REST APIs</span>
+        <span class="stack-tag">GraphQL</span>
+        <span class="stack-tag">PostgreSQL</span>
+        <span class="stack-tag">MongoDB</span>
       </div>
     </div>
-    <div class="skill-group fade-up" data-delay="0.16s">
-      <h4>Cloud & DevOps</h4>
-      <div class="skill-tags">
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">Terraform</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">GitHub Actions</span>
-        <span class="skill-tag">CI/CD</span>
-        <span class="skill-tag">Lambda</span>
+    <div class="stack-group" data-reveal>
+      <h4>Cloud & Infrastructure</h4>
+      <div class="stack-tags">
+        <span class="stack-tag">AWS</span>
+        <span class="stack-tag">Lambda</span>
+        <span class="stack-tag">S3 / CloudFront</span>
+        <span class="stack-tag">Terraform</span>
+        <span class="stack-tag">Docker</span>
+        <span class="stack-tag">GitHub Actions</span>
       </div>
     </div>
-    <div class="skill-group fade-up" data-delay="0.24s">
+    <div class="stack-group" data-reveal>
       <h4>Security</h4>
-      <div class="skill-tags">
-        <span class="skill-tag">GCIH Certified</span>
-        <span class="skill-tag">GSEC (97%)</span>
-        <span class="skill-tag">Penetration Testing</span>
-        <span class="skill-tag">Incident Response</span>
-        <span class="skill-tag">SANS Standards</span>
-        <span class="skill-tag">IAM Hardening</span>
+      <div class="stack-tags">
+        <span class="stack-tag">Penetration Testing</span>
+        <span class="stack-tag">Incident Response</span>
+        <span class="stack-tag">IAM Hardening</span>
+        <span class="stack-tag">SIEM</span>
+        <span class="stack-tag">Vulnerability Research</span>
+      </div>
+    </div>
+    <div class="stack-group" data-reveal>
+      <h4>Mobile</h4>
+      <div class="stack-tags">
+        <span class="stack-tag">React Native</span>
+        <span class="stack-tag">Flutter</span>
+        <span class="stack-tag">iOS</span>
+        <span class="stack-tag">Android</span>
+      </div>
+    </div>
+    <div class="stack-group" data-reveal>
+      <h4>Design</h4>
+      <div class="stack-tags">
+        <span class="stack-tag">Figma</span>
+        <span class="stack-tag">Design Systems</span>
+        <span class="stack-tag">User Research</span>
+        <span class="stack-tag">Prototyping</span>
       </div>
     </div>
   </div>
 </section>
 
 <div id="footer-ph"></div>
-<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
