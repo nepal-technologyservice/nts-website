@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Nepal Technology Service</title>
+  <meta name="description" content="Full-stack IT services from Nepal — web development, mobile apps, cybersecurity, cloud, DevOps, UI/UX, digital marketing and more." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 80px; }
+    .services-intro p { color: var(--light); line-height: 1.85; margin-bottom: 14px; font-size: 1rem; }
+
+    .service-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .service-item {
+      background: var(--surface); padding: 40px 40px;
+      display: grid; grid-template-columns: 80px 1fr auto;
+      gap: 32px; align-items: start; cursor: pointer;
+      transition: background 0.3s; position: relative;
+    }
+    .service-item::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--red), var(--blue));
+      transform: scaleY(0); transform-origin: top; transition: transform 0.4s;
+    }
+    .service-item:hover { background: var(--surface2); }
+    .service-item:hover::before { transform: scaleY(1); }
+    .service-item-num {
+      font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+      color: rgba(255,255,255,0.06); line-height: 1; padding-top: 4px;
+    }
+    .service-item-body h3 {
+      font-family: var(--font-head); font-size: 1.25rem; font-weight: 700;
+      margin-bottom: 10px; line-height: 1.2;
+    }
+    .service-item-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; max-width: 560px; }
+    .service-item-body .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .service-item-body .service-tags span {
+      background: var(--surface2); border: 1px solid var(--border);
+      font-size: 0.75rem; color: var(--light); padding: 4px 12px; border-radius: 4px;
+    }
+    .service-item-arrow {
+      font-size: 1.4rem; color: var(--red); margin-top: 4px;
+      transition: transform 0.2s;
+    }
+    .service-item:hover .service-item-arrow { transform: translateX(6px) translateY(-6px); }
+
+    /* WHY NTS */
+    .why-section { background: var(--surface); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 56px;
+    }
+    .why-card {
+      background: var(--black); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px;
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: border-color 0.3s;
+    }
+    .why-card:hover { border-color: rgba(220,20,60,0.3); }
+    .why-icon {
+      width: 44px; height: 44px; border-radius: 8px; flex-shrink: 0;
+      background: var(--red-muted); border: 1px solid rgba(220,20,60,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .why-card h4 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+    .why-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+    @media (max-width: 900px) {
+      .services-intro { grid-template-columns: 1fr; gap: 32px; }
+      .service-item { grid-template-columns: 1fr; gap: 12px; }
+      .service-item-num { font-size: 1.2rem; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div id="nav-ph"></div>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="index.html">Home</a> <span>/</span> Services</div>
+  <h1>Everything You<br>Need. Nothing<br>You <span style="color:var(--red)">Don't.</span></h1>
+  <p>A full IT company — not a freelancer with a business card. We cover the entire stack so you don't have to juggle ten vendors.</p>
+</div>
+
+<section class="section">
+  <div class="services-intro">
+    <div class="fade-up">
+      <div class="section-tag">Our Services</div>
+      <h2 class="section-title">11 Services.<br>One Standard.</h2>
+    </div>
+    <div class="fade-up" data-delay="0.1s">
+      <p>Every service we offer is delivered to the same standard — the one we'd want if we were the client. That means proper documentation, proper security, proper testing, and code that someone else can actually maintain.</p>
+      <p>Not because it sounds good on a website. Because that's what international standards actually require.</p>
+    </div>
+  </div>
+
+  <div class="service-list">
+    <div class="service-item fade-up">
+      <div class="service-item-num">01</div>
+      <div class="service-item-body">
+        <h3>Web Development</h3>
+        <p>Custom websites and web applications built for performance, security and scale. We don't do templates — everything is purpose-built for your use case, whether that's a marketing site, a SaaS product, or a complex web platform.</p>
+        <div class="service-tags">
+          <span>React</span><span>Next.js</span><span>Node.js</span><span>Custom CMS</span><span>E-Commerce</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">02</div>
+      <div class="service-item-body">
+        <h3>Mobile App Development</h3>
+        <p>Native and cross-platform apps for iOS and Android. Built with the same architecture discipline you'd find at top product companies — because your users deserve apps that actually work, not crash.</p>
+        <div class="service-tags">
+          <span>React Native</span><span>Flutter</span><span>iOS</span><span>Android</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">03</div>
+      <div class="service-item-body">
+        <h3>UI/UX Design</h3>
+        <p>Design that earns its place — every pixel has a reason. We do user research, wireframing, prototyping and visual design. Not just what looks good, but what actually converts and retains users.</p>
+        <div class="service-tags">
+          <span>Figma</span><span>User Research</span><span>Prototyping</span><span>Design Systems</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">04</div>
+      <div class="service-item-body">
+        <h3>Cybersecurity</h3>
+        <p>Security consulting, audits, penetration testing and incident response — delivered by a GCIH-certified team trained to SANS standards. We don't just find the holes. We help you fix them and prevent the next ones.</p>
+        <div class="service-tags">
+          <span>Penetration Testing</span><span>Security Audits</span><span>Incident Response</span><span>IAM Hardening</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">05</div>
+      <div class="service-item-body">
+        <h3>Cloud Services</h3>
+        <p>Cloud architecture, migration and management on AWS. We design for reliability and cost efficiency — not just because it's trendy, but because done right, cloud infrastructure is a competitive advantage.</p>
+        <div class="service-tags">
+          <span>AWS</span><span>Cloud Architecture</span><span>Cost Optimization</span><span>Migration</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">06</div>
+      <div class="service-item-body">
+        <h3>DevOps</h3>
+        <p>CI/CD pipelines, infrastructure as code, containerization and automated deployments. We make shipping software a boring, reliable process — exactly what it should be.</p>
+        <div class="service-tags">
+          <span>Terraform</span><span>Docker</span><span>GitHub Actions</span><span>CI/CD</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">07</div>
+      <div class="service-item-body">
+        <h3>API Development & Integration</h3>
+        <p>REST and GraphQL APIs built for reliability and developer experience. Third-party integrations that actually work — and documentation that makes sense to humans.</p>
+        <div class="service-tags">
+          <span>REST</span><span>GraphQL</span><span>Third-Party APIs</span><span>Documentation</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">08</div>
+      <div class="service-item-body">
+        <h3>Software Development</h3>
+        <p>Bespoke software built to solve specific business problems. We take the time to understand what you actually need — not just what you said you want — and we build it properly.</p>
+        <div class="service-tags">
+          <span>Custom Software</span><span>SaaS Products</span><span>Automation Tools</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">09</div>
+      <div class="service-item-body">
+        <h3>Quality Assurance & Testing</h3>
+        <p>Manual and automated testing across web, mobile and API layers. Because shipping fast doesn't mean skipping QA — it means building QA into the process from the start.</p>
+        <div class="service-tags">
+          <span>Automated Testing</span><span>Manual QA</span><span>Performance Testing</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">10</div>
+      <div class="service-item-body">
+        <h3>Digital Marketing</h3>
+        <p>SEO, social media strategy and digital campaigns for tech companies that actually need to grow. We understand tech — which means we can market it better than a generic agency ever could.</p>
+        <div class="service-tags">
+          <span>SEO</span><span>Social Media</span><span>Content Strategy</span><span>Analytics</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+    <div class="service-item fade-up">
+      <div class="service-item-num">11</div>
+      <div class="service-item-body">
+        <h3>IT Consulting</h3>
+        <p>Strategic tech guidance for businesses that need to modernize, scale, or just figure out what they should be building. No jargon, no upselling — just honest advice from people who've built real systems.</p>
+        <div class="service-tags">
+          <span>Tech Strategy</span><span>Architecture Review</span><span>Vendor Selection</span>
+        </div>
+      </div>
+      <div class="service-item-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NTS -->
+<section class="section why-section">
+  <div class="section-tag">Why NTS</div>
+  <h2 class="section-title">What Makes Us<br>Different</h2>
+  <div class="why-grid">
+    <div class="why-card fade-up">
+      <div class="why-icon">🌐</div>
+      <div>
+        <h4>International Standards, Local Presence</h4>
+        <p>We hold ourselves to the same bar as the best tech companies in the world — while being on the ground in Nepal, understanding the market from the inside.</p>
+      </div>
+    </div>
+    <div class="why-card fade-up" data-delay="0.08s">
+      <div class="why-icon">🔐</div>
+      <div>
+        <h4>Security-First by Default</h4>
+        <p>Security isn't a service tier or an add-on at NTS — it's how we build everything. Every project comes with security baked in, not bolted on.</p>
+      </div>
+    </div>
+    <div class="why-card fade-up" data-delay="0.16s">
+      <div class="why-icon">⚡</div>
+      <div>
+        <h4>GenZ Speed</h4>
+        <p>We grew up on the internet. We move fast, we use the latest tools, and we don't have the legacy baggage that slows most agencies down.</p>
+      </div>
+    </div>
+    <div class="why-card fade-up" data-delay="0.24s">
+      <div class="why-icon">🎯</div>
+      <div>
+        <h4>Full-Stack Accountability</h4>
+        <p>One team. One point of contact. No finger-pointing between a design agency and a dev agency. We own the whole product — and the results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-ph"></div>
+<script src="js/layout.js"></script>
+</body>
+</html>

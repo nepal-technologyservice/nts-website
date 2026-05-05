@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses — Nepal Technology Service</title>
+  <meta name="description" content="Real-world tech courses from Nepal Technology Service — cybersecurity, ethical hacking, and more. Coming soon." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .courses-hero {
+      min-height: 70vh; display: flex; align-items: center;
+      padding: 140px 5vw 80px; position: relative; overflow: hidden;
+    }
+    .courses-hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 70% at 60% 50%, rgba(0,56,147,0.1) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(220,20,60,0.07) 0%, transparent 60%);
+    }
+    .courses-hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .courses-hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 800; line-height: 0.97; letter-spacing: -0.05em;
+      margin-bottom: 28px;
+    }
+    .courses-hero p { color: var(--light); font-size: 1.1rem; max-width: 460px; line-height: 1.8; margin-bottom: 40px; }
+    .notify-big {
+      display: flex; gap: 0; max-width: 480px;
+      border: 1px solid var(--border); border-radius: 10px; overflow: hidden;
+      background: var(--surface);
+    }
+    .notify-big input {
+      flex: 1; background: transparent; border: none; outline: none;
+      padding: 16px 20px; color: var(--white); font-family: var(--font-body); font-size: 0.95rem;
+    }
+    .notify-big input::placeholder { color: var(--muted); }
+    .notify-big button {
+      background: var(--blue); color: #fff; border: none;
+      padding: 16px 24px; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; font-family: var(--font-body); transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .notify-big button:hover { background: var(--blue-light); }
+    .notify-note { font-size: 0.78rem; color: var(--muted); margin-top: 10px; }
+
+    /* COURSES */
+    .course-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 56px; }
+    .course-row {
+      background: var(--surface); padding: 36px 40px;
+      display: grid; grid-template-columns: 64px 1fr auto;
+      gap: 28px; align-items: center;
+      position: relative; overflow: hidden;
+      transition: background 0.3s;
+    }
+    .course-row:hover { background: var(--surface2); }
+    .course-row-icon {
+      width: 56px; height: 56px; border-radius: 12px;
+      background: var(--blue-muted); border: 1px solid rgba(0,56,147,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+    }
+    .course-row-body h3 { font-family: var(--font-head); font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+    .course-row-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; max-width: 560px; }
+    .course-row-body .course-meta {
+      display: flex; gap: 16px; margin-top: 12px; flex-wrap: wrap;
+    }
+    .course-meta-item { font-size: 0.75rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .course-meta-item strong { color: var(--light); }
+    .course-badge {
+      background: var(--blue); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 100px; white-space: nowrap;
+    }
+
+    /* INSTRUCTOR */
+    .instructor-section { background: var(--surface); }
+    .instructor-card {
+      display: grid; grid-template-columns: 280px 1fr; gap: 64px;
+      align-items: center; margin-top: 56px;
+      background: var(--black); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .instructor-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: top; display: block;
+    }
+    .instructor-info { padding: 48px 48px 48px 0; }
+    .instructor-info h3 { font-family: var(--font-head); font-size: 1.8rem; font-weight: 800; margin-bottom: 6px; }
+    .instructor-info .role { font-size: 0.85rem; color: var(--red); font-weight: 600; margin-bottom: 20px; letter-spacing: 0.04em; }
+    .instructor-info p { font-size: 0.95rem; color: var(--light); line-height: 1.85; margin-bottom: 14px; }
+    .certs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .cert-badge {
+      font-size: 0.75rem; font-weight: 700; padding: 6px 14px; border-radius: 6px;
+    }
+    .cert-badge.gold { background: rgba(245,200,66,0.15); color: #F5C842; border: 1px solid rgba(245,200,66,0.2); }
+    .cert-badge.blue { background: var(--blue-muted); color: #6699ff; border: 1px solid rgba(0,56,147,0.2); }
+
+    @media (max-width: 900px) {
+      .course-row { grid-template-columns: 1fr; gap: 16px; }
+      .instructor-card { grid-template-columns: 1fr; }
+      .instructor-photo { aspect-ratio: 4/3; }
+      .instructor-info { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+<div id="nav-ph"></div>
+
+<div class="courses-hero">
+  <div class="courses-hero-bg"></div>
+  <div class="courses-hero-content">
+    <div class="hero-pill" style="margin-bottom:28px;">
+      <div class="hero-pill-dot" style="width:6px;height:6px;border-radius:50%;background:var(--blue);animation:pulse 2s infinite;"></div>
+      <span style="font-size:0.75rem;color:#6699ff;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;">Coming Soon</span>
+    </div>
+    <h1>Learn From<br>People Who<br><span style="color:var(--blue-light)">Actually Do It.</span></h1>
+    <p>Real cybersecurity courses taught by a practitioner — not a professor. Built on SANS-standard knowledge, explained for the real world.</p>
+    <div class="notify-big">
+      <input type="email" placeholder="your@email.com" />
+      <button type="button">Notify Me When Live</button>
+    </div>
+    <p class="notify-note">No spam. Just one email when courses go live.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="section-tag">Curriculum</div>
+  <h2 class="section-title">What's Coming</h2>
+  <p class="section-sub">Four courses designed to take you from zero to job-ready in cybersecurity — the right way.</p>
+
+  <div class="course-list">
+    <div class="course-row fade-up">
+      <div class="course-row-icon">🛡️</div>
+      <div class="course-row-body">
+        <h3>Security Fundamentals</h3>
+        <p>The starting point. Networks, systems, cryptography, access control and the core concepts that every security professional needs to know cold. No fluff — just the fundamentals that actually matter.</p>
+        <div class="course-meta">
+          <div class="course-meta-item">Level: <strong>Beginner</strong></div>
+          <div class="course-meta-item">Based on: <strong>SANS SEC401</strong></div>
+        </div>
+      </div>
+      <div class="course-badge">Coming Soon</div>
+    </div>
+    <div class="course-row fade-up" data-delay="0.08s">
+      <div class="course-row-icon">🔐</div>
+      <div class="course-row-body">
+        <h3>Cybersecurity Essentials</h3>
+        <p>Threats, defenses, risk management, and how to think like an attacker so you can defend like a pro. This is where theory meets practice — covering real attack patterns and how to counter them.</p>
+        <div class="course-meta">
+          <div class="course-meta-item">Level: <strong>Intermediate</strong></div>
+          <div class="course-meta-item">Based on: <strong>SANS GFACT</strong></div>
+        </div>
+      </div>
+      <div class="course-badge">Coming Soon</div>
+    </div>
+    <div class="course-row fade-up" data-delay="0.16s">
+      <div class="course-row-icon">🕵️</div>
+      <div class="course-row-body">
+        <h3>Ethical Hacking & Incident Handling</h3>
+        <p>The hands-on course. Penetration testing methodologies, hacker tools and techniques, and incident response — based on what actually happens in the real world, not textbook theory.</p>
+        <div class="course-meta">
+          <div class="course-meta-item">Level: <strong>Intermediate–Advanced</strong></div>
+          <div class="course-meta-item">Based on: <strong>SANS SEC504 / GCIH</strong></div>
+        </div>
+      </div>
+      <div class="course-badge">Coming Soon</div>
+    </div>
+    <div class="course-row fade-up" data-delay="0.24s">
+      <div class="course-row-icon">✍️</div>
+      <div class="course-row-body">
+        <h3>Cyber Writing & Communication</h3>
+        <p>The most underrated skill in cybersecurity. How to write security reports, communicate risk to executives, and present technical findings to any audience — clearly and persuasively.</p>
+        <div class="course-meta">
+          <div class="course-meta-item">Level: <strong>All Levels</strong></div>
+          <div class="course-meta-item">Based on: <strong>SANS SEC402</strong></div>
+        </div>
+      </div>
+      <div class="course-badge">Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTRUCTOR -->
+<section class="section instructor-section">
+  <div class="section-tag">Your Instructor</div>
+  <h2 class="section-title">Taught by Someone<br>Who's Done It.</h2>
+  <div class="instructor-card fade-up">
+    <img src="images/shivam.jpg" alt="Shivam Pajiyar" class="instructor-photo" />
+    <div class="instructor-info">
+      <h3>Shivam Pajiyar</h3>
+      <div class="role">Founder & CTO — Nepal Technology Service</div>
+      <p>Shivam is a GCIH-certified security professional who has completed multiple SANS courses — one of the most rigorous cybersecurity training programs in the world. He scored 97% on his GSEC exam and was selected for the GIAC Advisory Board.</p>
+      <p>He's not a professor. He's a practitioner who builds real systems, finds real vulnerabilities, and has disclosed security issues to companies like Samsung and D-Link. These courses are built from that real-world experience.</p>
+      <div class="certs">
+        <span class="cert-badge gold">GCIH Certified</span>
+        <span class="cert-badge gold">GSEC — 97%</span>
+        <span class="cert-badge gold">GFACT</span>
+        <span class="cert-badge blue">GIAC Advisory Board</span>
+        <span class="cert-badge blue">SEC504 Complete</span>
+        <span class="cert-badge blue">SEC401 Complete</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-ph"></div>
+<script src="js/layout.js"></script>
+</body>
+</html>
